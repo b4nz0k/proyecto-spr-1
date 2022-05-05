@@ -53,6 +53,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])
 });
 
 Route::get('articulo', [App\Http\Controllers\ArticuloController::class, 'index'])->name('articulo.index');
+Route::post('articulo', [App\Http\Controllers\ArticuloController::class, 'store'])->name('articulo.store');
+Route::get('articulos/create', [App\Http\Controllers\ArticuloController::class, 'create'])->name('articulo.create');
 //Route::resource('articulos', 'App\Http\Controllers\ArticuloController');
 
 Route::get('get-articulos/{codigo}',[App\Http\Controllers\ArticuloController::class, 'store'])->name('crear-articulo');

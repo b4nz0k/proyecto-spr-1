@@ -1,7 +1,7 @@
 @extends('layouts.plantillabase')
 @section('segundaPlantilla')
 <h2>Crear registros</h2>
-<form action="/articulos/get-articulos" method="GET">
+<form action="{{route('articulo.store')}}" method="POST">
     @csrf
     <div class="mb-3">
         <label class="form-label">Codigo</label>

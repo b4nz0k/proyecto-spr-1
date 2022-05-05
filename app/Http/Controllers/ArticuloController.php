@@ -14,15 +14,23 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        return ("Hola");
-/*         $articulos = Articulos::all(); 
+        $articulos = Articulos::all(); 
         return view('articulo.index')->with('articulos', $articulos);
 
- */   }
+   }
 
-    public function store($codigo){
-        return $codigo;
-    }
+    public function store(request $request){
+        $articulo = new Articulos();
+        $articulo->codigo = $request->codigo;
+        $articulo->descripcion = $request->descripcion;
+        $articulo->cantidad = $request->cantidad;
+        $articulo->precio = $request->precio;
+
+
+        $articulo->save();
+        return ('Datos guardados');
+/*         return $codigo;
+ */    }
 
 
 
