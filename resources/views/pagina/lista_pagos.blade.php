@@ -23,6 +23,7 @@
     <li class="list-group-item">{{$pago->monto}}</li>
     <li class="list-group-item">{{$pago->monto}}</li>
   </ul>
+
  @endforeach
 
 @endsection()

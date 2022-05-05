@@ -23,23 +23,28 @@ Route::get('/', function () {
 });
 
 
-Route::get('/alta_contratos', function () {
-    return view('pagina.alta_contratos');
-});
+Route::get('/alta_pagos', [App\Http\Controllers\PagosController::class, 'alta'])->name('alta_pagos.alta');
+
+Route::post('/registro_pagos', [App\Http\Controllers\PagosController::class, 'create'])->name('registro_pagos.create');
+
+Route::get('/lista_pagos', [App\Http\Controllers\PagosController::class, 'lista'])->name('lista_pagos.lista');
 
 
-Route::get('/alta_pagos', function () {
-    return view('pagina.alta_pagos');
-});
 
-Route::get('/lista_pagos', function () {
-    return view('pagina.lista_pagos');
-});
+
+Route::get('/lista_contratos', [App\Http\Controllers\ContratosController::class, 'lista'])->name('lista_contratos.lista');
+
+Route::get('/alta_contratos', [App\Http\Controllers\ContratosController::class, 'alta'])->name('alta_contratos.alta');
+
+
+
 
 
 Route::get('/welcome', function () {
     return view('welcome');
 });
+
+
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])
 ->group(function () {
     Route::get('/dashboard', function () {
@@ -51,8 +56,7 @@ Route::get('articulo', [App\Http\Controllers\ArticuloController::class, 'index']
 //Route::resource('articulos', 'App\Http\Controllers\ArticuloController');
 
 Route::get('get-articulos/{codigo}',[App\Http\Controllers\ArticuloController::class, 'store'])->name('crear-articulo');
-Route::resource('/lista_contratos', 'App\Http\Controllers\ContratosController');
-Route::resource('/lista_pagos', 'App\Http\Controllers\PagosController');
+
 
 Auth::routes();
 

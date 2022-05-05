@@ -12,11 +12,15 @@ class PagosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function alta()
+    {
+        return view ('pagina.alta_pagos');
+    }
+    
+    public function lista()
     {
         $pagos = Pagos::all();
         return view ('pagina.lista_pagos')->with('pagos', $pagos);
-        //
     }
 
     /**
