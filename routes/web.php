@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::get('/alta_pagos', [App\Http\Controllers\PagosController::class, 'alta'])->name('alta_pagos.alta');
 
-Route::post('/registro_pagos', [App\Http\Controllers\PagosController::class, 'create'])->name('registro_pagos.create');
+Route::post('/registro_pagos', [App\Http\Controllers\PagosController::class, 'store'])->name('registro_pagos.store');
 
 Route::get('/lista_pagos', [App\Http\Controllers\PagosController::class, 'lista'])->name('lista_pagos.lista');
 

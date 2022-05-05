@@ -41,7 +41,14 @@ class PagosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pagos = new Pagos();
+        $pagos->fecha_solicitud = $request->fecha_solicitud;
+        $pagos->fecha_pago = $request->fecha_pago;
+        $pagos->periodo_pago = $request->periodo_pago;
+        $pagos->num_recibo_factura = $request->num_recibo_factura;
+        $pagos->contrato = $request->contrato;
+        $pagos->monto = $request->monto;
+        return $pagos;
     }
 
     /**

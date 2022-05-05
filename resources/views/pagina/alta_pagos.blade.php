@@ -1,7 +1,7 @@
 @extends('layouts.vistapadre')
 
 @section('contenidoPrincipal')
-    <form action="" method="post">
+    <form action="{{route('registro_pagos.store')}}" method="POST">
 
     <h1>Registrar Pago</h1>
     <label for="">Fecha de solicitud</label>
