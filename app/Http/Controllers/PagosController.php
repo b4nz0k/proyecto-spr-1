@@ -39,7 +39,7 @@ class PagosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(request $request)
     {
         $pagos = new Pagos();
         $pagos->fecha_solicitud = $request->fecha_solicitud;
@@ -48,7 +48,9 @@ class PagosController extends Controller
         $pagos->num_recibo_factura = $request->num_recibo_factura;
         $pagos->contrato = $request->contrato;
         $pagos->monto = $request->monto;
-        return $pagos;
+
+        return ("Prueba de POST");
+        //return ($pagos);
     }
 
     /**
