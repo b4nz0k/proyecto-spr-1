@@ -20,7 +20,6 @@ class contratosController extends Controller
     public function lista()
     {
         $contratos = Contratos::all();
-
         return view ('pagina.lista_contratos')->with('contratos', $contratos);
     }
 
