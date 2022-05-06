@@ -41,6 +41,9 @@ Route::get('/lista-pagos', [App\Http\Controllers\PagosController::class, 'lista'
 
 Route::get('/lista-contratos', [App\Http\Controllers\ContratosController::class, 'lista'])->name('lista-contratos.lista');
 
+Route::post('/registro-contratos', [App\Http\Controllers\ContratosController::class, 'store'])->name('registro-contratos.store');
+
+
 Route::get('/alta-contratos', [App\Http\Controllers\ContratosController::class, 'alta'])->name('alta-contratos.alta');
 
 

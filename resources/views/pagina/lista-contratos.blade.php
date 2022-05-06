@@ -23,7 +23,7 @@
         @foreach ($contratos as $contrato )
 
         <tr>
-          <td>{{$contrato->id}}</td>
+          <td>{{$contrato->proveedor}}</td>
           <td>{{$contrato->fecha_inicio}}</td>
           <td>{{$contrato->proveedor}}</td>
           <td>{{$contrato->dia_corte_mensual}}</td>

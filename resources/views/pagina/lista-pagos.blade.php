@@ -19,6 +19,7 @@
           <th scope="col">Contrato</th>
           <th scope="col">Periodo Pago</th>
           <th scope="col">Monto</th>
+          <th scope="col">Accion</th>
         </tr>
       </thead>
       <tbody>
@@ -31,7 +32,10 @@
           <td>{{$pago->contrato}}</td>
           <td>{{$pago->periodo_pago}}</td>
           <td>{{$pago->monto}}</td>
-
+          <td>
+            <a href="/pagos/{{$pago->id}}" class="btn btn-success">Editar</a>
+            <button type="submit" class="btn btn-danger">Borrar</button>
+          </td>
         </tr>
 
         @endforeach

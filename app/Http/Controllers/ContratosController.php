@@ -45,7 +45,18 @@ class contratosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $contratos = new Contratos();
+
+        $contrato->proveedor = $request->proveedor;
+        $contrato->fecha_inicio = $request->fecha_inicio;
+        $contrato->proveedor = $request->proveedor;
+        $contrato->dia_corte_mensual = $request->dia_corte_mensual;
+        $contrato->num_contrato = $request->num_contrato;
+        $contrato->importe_mensual = $request->importe_mensual;
+
+
+        return ("Prueba de POST");
+        //return ($pagos);
     }
 
     /**
