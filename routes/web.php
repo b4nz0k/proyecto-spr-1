@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,19 +33,14 @@ Route::get('/principal', function () {
     return view('pagina.principal');
 });
 
-Route::get('/alta-pagos', [App\Http\Controllers\PagosController::class, 'alta'])->name('alta-pagos.alta');
+Route::get('/alta-pagos', [App\Http\Controllers\PagosController::class, 'alta'])->name('Pagos.alta');
+Route::post('/registro-pagos', [App\Http\Controllers\PagosController::class, 'store'])->name('Pagos.store');
+Route::get('/lista-pagos', [App\Http\Controllers\PagosController::class, 'lista'])->name('Pagos.lista');
+Route::get('/editar-pago/{id}', [App\Http\Controllers\PagosController::class, 'lista'])->name('Pagos.lista');
 
-Route::post('/registro-pagos', [App\Http\Controllers\PagosController::class, 'store'])->name('registro-pagos.store');
-
-Route::get('/lista-pagos', [App\Http\Controllers\PagosController::class, 'lista'])->name('lista-pagos.lista');
-
-
-Route::get('/lista-contratos', [App\Http\Controllers\ContratosController::class, 'lista'])->name('lista-contratos.lista');
-
-Route::post('/registro-contratos', [App\Http\Controllers\ContratosController::class, 'store'])->name('registro-contratos.store');
-
-
-Route::get('/alta-contratos', [App\Http\Controllers\ContratosController::class, 'alta'])->name('alta-contratos.alta');
+Route::get('/lista-contratos', [App\Http\Controllers\ContratosController::class, 'lista'])->name('Contratos.lista');
+Route::post('/registro-contratos', [App\Http\Controllers\ContratosController::class, 'store'])->name('Contratos.store');
+Route::get('/alta-contratos', [App\Http\Controllers\ContratosController::class, 'alta'])->name('Contratos.alta');
 
 
 

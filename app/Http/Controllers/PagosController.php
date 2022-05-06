@@ -52,8 +52,8 @@ class PagosController extends Controller
         $pagos->contrato = $request->contrato;
         $pagos->monto = $request->monto;
 
-        return ("Prueba de POST");
-        //return ($pagos);
+        // return ("Prueba de POST");
+        return ($pagos);
     }
 
     /**

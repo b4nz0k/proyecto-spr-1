@@ -33,7 +33,8 @@
           <td>{{$pago->periodo_pago}}</td>
           <td>{{$pago->monto}}</td>
           <td>
-            <a href="/pagos/{{$pago->id}}" class="btn btn-success">Editar</a>
+            
+            <a href="/pagos/{{ route('Pagos.edit') }}" class="btn btn-success">Editar</a>
             <button type="submit" class="btn btn-danger">Borrar</button>
           </td>
         </tr>

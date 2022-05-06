@@ -47,16 +47,16 @@ class contratosController extends Controller
     {
         $contratos = new Contratos();
 
-        $contrato->proveedor = $request->proveedor;
-        $contrato->fecha_inicio = $request->fecha_inicio;
-        $contrato->proveedor = $request->proveedor;
-        $contrato->dia_corte_mensual = $request->dia_corte_mensual;
-        $contrato->num_contrato = $request->num_contrato;
-        $contrato->importe_mensual = $request->importe_mensual;
+        $contratos->proveedor = $request->proveedor;
+        $contratos->fecha_inicio = $request->fecha_inicio;
+        $contratos->proveedor = $request->proveedor;
+        $contratos->dia_corte_mensual = $request->dia_corte_mensual;
+        $contratos->num_contrato = $request->num_contrato;
+        $contratos->importe_mensual = $request->importe_mensual;
 
 
-        return ("Prueba de POST");
-        //return ($pagos);
+        // return ("Prueba de POST");
+        return ($contratos);
     }
 
     /**

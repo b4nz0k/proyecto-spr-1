@@ -6,8 +6,8 @@
 @stop
 
 @section('content')
-    <form action="{{route('registro-pagos.store')}}" method="post">
-
+    <form action="{{route('Contratos.store')}}" method="post">
+      @csrf
       <h1>Registrar Contrato</h1>
       <label for="">Proveedor</label>
       <input class="form-control" type="number" placeholder="Proveedor" name="no_proveedor">
