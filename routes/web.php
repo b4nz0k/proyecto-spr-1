@@ -32,16 +32,16 @@ Route::get('/principal', function () {
     return view('pagina.principal');
 });
 
-Route::get('/alta_pagos', [App\Http\Controllers\PagosController::class, 'alta'])->name('alta_pagos.alta');
+Route::get('/alta-pagos', [App\Http\Controllers\PagosController::class, 'alta'])->name('alta-pagos.alta');
 
-Route::post('/registro_pagos', [App\Http\Controllers\PagosController::class, 'store'])->name('registro_pagos.store');
+Route::post('/registro-pagos', [App\Http\Controllers\PagosController::class, 'store'])->name('registro-pagos.store');
 
-Route::get('/lista_pagos', [App\Http\Controllers\PagosController::class, 'lista'])->name('lista_pagos.lista');
+Route::get('/lista-pagos', [App\Http\Controllers\PagosController::class, 'lista'])->name('lista-pagos.lista');
 
 
-Route::get('/lista_contratos', [App\Http\Controllers\ContratosController::class, 'lista'])->name('lista_contratos.lista');
+Route::get('/lista-contratos', [App\Http\Controllers\ContratosController::class, 'lista'])->name('lista-contratos.lista');
 
-Route::get('/alta_contratos', [App\Http\Controllers\ContratosController::class, 'alta'])->name('alta_contratos.alta');
+Route::get('/alta-contratos', [App\Http\Controllers\ContratosController::class, 'alta'])->name('alta-contratos.alta');
 
 
 
@@ -62,8 +62,6 @@ Route::get('articulos/create', [App\Http\Controllers\ArticuloController::class, 
 Route::get('get-articulos/{codigo}',[App\Http\Controllers\ArticuloController::class, 'store'])->name('crear-articulo');
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

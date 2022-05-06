@@ -14,13 +14,13 @@ class contratosController extends Controller
      */
     public function alta()
     {
-        return view ('pagina.alta_contratos');
+        return view ('pagina.alta-contratos');
     }
 
     public function lista()
     {
         $contratos = Contratos::all();
-        return view ('pagina.lista_contratos')->with('contratos', $contratos);
+        return view ('pagina.lista-contratos')->with('contratos', $contratos);
     }
 
     /**

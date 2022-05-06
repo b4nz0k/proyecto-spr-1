@@ -14,13 +14,13 @@ class PagosController extends Controller
      */
     public function alta()
     {
-        return view ('pagina.alta_pagos');
+        return view ('pagina.alta-pagos');
     }
     
     public function lista()
     {
         $pagos = Pagos::all();
-        return view ('pagina.lista_pagos')->with('pagos', $pagos);
+        return view ('pagina.lista-pagos')->with('pagos', $pagos);
     }
 
     /**
