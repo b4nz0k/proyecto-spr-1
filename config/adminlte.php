@@ -248,7 +248,7 @@ return [
         ],
         [
             'text'        => 'Mapa',
-            'url'         => 'admin/pages',
+            'url'         => 'principal',
             'icon'        => 'far fa-thin fa-map',
             'label'       => 4,
             'label_color' => 'success',
@@ -260,13 +260,9 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'Cambiar Clave',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
             'text'    => 'Menu',
-            'icon'    => 'fas fa-fw fa-share',
+            'icon' => 'fas fas fa-book',
+            // 'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
                     'text' => 'Alta Contratos',
