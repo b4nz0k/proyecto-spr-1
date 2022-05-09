@@ -8,15 +8,17 @@
 @section('content')
 <h1>Lista de Contratos</h1>
 
+
     <table id="contratos" class="table table-striped mt-4 table-bordered shadow-lg" style="width:100%">
       <thead>
-        <tr>
+       <tr>
           <th scope="col">Proveedor</th>
           <th scope="col">Fecha de inicio</th>
           <th scope="col">Proveedor</th>
           <th scope="col">Fecha de corte</th>
           <th scope="col">Numero de contrato</th>
           <th scope="col">Importe Mensual</th>
+          <th scope="col"> Accion</th>
         </tr>
       </thead>
       <tbody>
@@ -29,6 +31,10 @@
           <td>{{$contrato->dia_corte_mensual}}</td>
           <td>{{$contrato->num_contrato}}</td>
           <td>{{$contrato->importe_mensual}}</td>
+          <td>
+            <a href="/editar-contrato/{{ $contrato->id }}" class="btn btn-success">Editar</a>
+            <a href="/eliminar-contrato/{{$contrato->id }}"  class="btn btn-danger">Borrar</a>
+          </td>
         </tr>
 
         @endforeach
@@ -36,27 +42,7 @@
       </tbody>
     </table>
 
-{{--     <ul class="list-group list-group-horizontal list-group-item-action row-cols-6 list-group-item-action">
 
-        <li class="list-group-item bg-primary text-white">Proveedor</li>
-        <li class="list-group-item bg-primary text-white">Fecha de inicio</li>
-        <li class="list-group-item bg-primary text-white">Proveedor</li>
-        <li class="list-group-item bg-primary text-white">Fecha de corte</li>
-        <li class="list-group-item bg-primary text-white">Numero de contrato</li>
-        <li class="list-group-item bg-primary text-white">Importe Mensual</li>
-      </ul>
-    @foreach ($contratos as $contrato )
-        
-      <ul class="list-group list-group-horizontal-sm row-cols-6">
-        <li class="list-group-item">{{$contrato->id}}</li>
-        <li class="list-group-item">{{$contrato->fecha_inicio}}</li>
-        <li class="list-group-item">{{$contrato->proveedor}}</li>
-        <li class="list-group-item">{{$contrato->dia_corte_mensual}}</li>
-        <li class="list-group-item">{{$contrato->num_contrato}}</li>
-        <li class="list-group-item">{{$contrato->importe_mensual}}</li>
-      </ul>
-    @endforeach
- --}}
 @stop
 
 @section('css')
@@ -67,10 +53,11 @@
 
 @section('js')
 <script>
-$(document).ready(function() {
-  $('#contratos').DataTable();
-} );
-</script>
+  $(document).ready(function() {
+    $('#contratos').DataTable();
+  } );
+  </script>
+  
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>

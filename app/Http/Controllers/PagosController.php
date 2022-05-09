@@ -51,7 +51,7 @@ class PagosController extends Controller
         $pagos->num_recibo_factura = $request->num_recibo_factura;
         $pagos->contrato = $request->contrato;
         $pagos->monto = $request->monto;
-
+        $pagos->save();
         // return ("Prueba de POST");
         return ($pagos);
     }
@@ -75,7 +75,8 @@ class PagosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pagos = Pagos::find($id);
+        return view ('pagina.editar-pago')->with('pagos', $pagos);
     }
 
     /**
@@ -87,7 +88,19 @@ class PagosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+          $pago = Pagos::find($id);
+        
+        $pago->fecha_solicitud = $request->fecha_solicitud;
+        $pago->fecha_pago = $request->fecha_pago;
+        $pago->periodo_pago = $request->periodo_pago;
+        $pago->num_recibo_factura = $request->num_recibo_factura;
+        $pago->contrato = $request->contrato;
+        $pago->monto = $request->monto;
+        $pago->save();
+        // $pagos->monto = $request->monto;
+        return redirect('lista-pagos');
+       
+
     }
 
     /**
@@ -98,6 +111,8 @@ class PagosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pago = Pagos::find($id);
+        $pago->delete();
+        return redirect('lista-pagos');
     }
 }

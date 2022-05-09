@@ -6,23 +6,24 @@
 @stop
 
 @section('content')
-
-<form action="{{route('Pagos.store')}}" method="POST">
-    @csrf
-    <h1>Registrar Pago</h1>
-    <label for="">Fecha de solicitud</label>
-    <input class="form-control" type="text" value="Fecha_de_solicitud" aria-label="Campo desactivado" disabled readonly name="fecha_solicitud">
-    <label for="">Fecha de pago</label>
-    <input class="form-control" type="text" placeholder="Fecha de Pago" name="fecha_pago">
-    <label for="">Numero de recibo defactura</label>
-    <input class="form-control" type="text" placeholder="Numero de recibo defactura"> 
-    <label for="">Contrato</label>
-    <input class="form-control" type="text" placeholder="Contrato" name="no_contrato">
-
-    <label for="">Monto</label>
-    <input class="form-control" type="text" placeholder="$" name="monto">
-    <button type="submit" class="btn btn-primary mb-2">Registrar</button>
-</form>
+    <form action="{{route('Pagos.store')}}" method="POST">
+        
+        @csrf
+        <h1>Registrar Pago</h1>
+        <label for="">Fecha de solicitud</label>
+        <input class="form-control" type="date" name="fecha_solicitud">
+        <label for="">Fecha de pago</label>
+        <input class="form-control" type="date" placeholder="Fecha de Pago" name="fecha_pago">
+        <label for="">Numero de recibo defactura</label>
+        <input class="form-control" type="text" placeholder="Numero de recibo defactura" name="num_recibo_factura"> 
+        <label for="">Periodo de Pago</label>
+        <input class="form-control" type="text" placeholder="Periodo de pago" name="periodo_pago">     
+        <label for="">Contrato</label>
+        <input class="form-control" type="text" placeholder="Contrato" name="contrato">
+        <label for="">Monto</label>
+        <input class="form-control" type="text" placeholder="$" name="monto">
+        <button type="submit" class="btn btn-primary mb-2">Registrar</button>
+    </form>
 
 @stop
 

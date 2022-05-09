@@ -6,22 +6,21 @@
 @stop
 
 @section('content')
-    <form action="{{route('Contratos.store')}}" method="post">
-      @csrf
-      <h1>Registrar Contrato</h1>
+<form action="/editar-contrato/{{$contratos->id}}" method="POST">
+    @csrf
+      <h1>Editar Contrato</h1>
       <label for="">Proveedor</label>
-      <input class="form-control" type="number" placeholder="Proveedor" name="proveedor">
+      <input class="form-control" type="number" value="{{$contratos->proveedor}}" name="proveedor">
       <label for="">Fecha de inicio</label>
-      <input class="form-control" type="date" placeholder="Fecha de inicio" name="fecha_inicio">
+      <input class="form-control" type="date" value="{{$contratos->fecha_inicio}}" name="fecha_inicio">
       <label for="">Contrato</label>
-      <input class="form-control" type="text" placeholder="Contrato" name="num_contrato">
-      <label for="">Dia de corte</label>
-      <input class="form-control" type="number" placeholder="Fecha de corte" name="dia_corte_mensual">
-
+      <input class="form-control" type="text" value="{{$contratos->num_contrato}}" name="num_contrato">
+      <label for="">Fecha de corte</label>
+      <input class="form-control" type="date" value="{{$contratos->dia_corte_mensual}}" name="dia_corte_mensual">
       <label for="">ID Estacion</label>
-      <input class="form-control" type="number" placeholder="Id Estacion" name="id_estacion"> 
+      <input class="form-control" type="number" value="{{$contratos->id_estacion}}" name="id_estacion"> 
       <label for="">Importe Mensual</label>
-      <input class="form-control" type="number" placeholder="$" name="importe_mensual">
+      <input class="form-control" type="number" value="{{$contratos->importe_mensual}}" name="importe_mensual">
       <button type="submit" class="btn btn-primary mb-2">Registrar</button>
     </form>
 

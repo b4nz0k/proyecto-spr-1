@@ -49,14 +49,14 @@ class contratosController extends Controller
 
         $contratos->proveedor = $request->proveedor;
         $contratos->fecha_inicio = $request->fecha_inicio;
-        $contratos->proveedor = $request->proveedor;
-        $contratos->dia_corte_mensual = $request->dia_corte_mensual;
         $contratos->num_contrato = $request->num_contrato;
+        $contratos->dia_corte_mensual = $request->dia_corte_mensual;
+        $contratos->id_estacion = $request->id_estacion;
         $contratos->importe_mensual = $request->importe_mensual;
 
-
+        $contratos->save();
         // return ("Prueba de POST");
-        return ($contratos);
+        return redirect('lista-contratos');
     }
 
     /**
@@ -78,7 +78,8 @@ class contratosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $contratos = Contratos::find($id);
+        return view ('pagina.editar-contrato')->with('contratos', $contratos);
     }
 
     /**
@@ -90,8 +91,18 @@ class contratosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $contratos = Contratos::find($id);
+
+        $contratos->proveedor = $request->proveedor;
+        $contratos->fecha_inicio = $request->fecha_inicio;
+        $contratos->num_contrato = $request->num_contrato;
+        $contratos->dia_corte_mensual = $request->dia_corte_mensual;
+        $contratos->id_estacion = $request->id_estacion;
+        $contratos->importe_mensual = $request->importe_mensual;
+        $contratos->save();
+        // return ("Prueba de POST");
+        return redirect('lista-contratos');   
+     }
 
     /**
      * Remove the specified resource from storage.
@@ -101,6 +112,7 @@ class contratosController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        $contrato = Contratos::find($id);
+        $contrato->delete();
+        return redirect('lista-contratos');    }
 }
