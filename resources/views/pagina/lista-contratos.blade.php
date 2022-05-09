@@ -32,7 +32,7 @@
           <td>{{$contrato->num_contrato}}</td>
           <td>{{$contrato->importe_mensual}}</td>
           <td>
-            <a href="/editar-contrato/{{ $contrato->id }}" class="btn btn-success">Editar</a>
+            <a href="/editar-contrato/{{ $contrato->id }}" class="btn btn-primary">Editar</a>
             <a href="/eliminar-contrato/{{$contrato->id }}"  class="btn btn-danger">Borrar</a>
           </td>
         </tr>

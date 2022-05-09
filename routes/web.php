@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagosController;
 use App\Http\Controllers\ContratosController;
+use App\Http\Controllers\EstacionesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,14 +15,12 @@ use App\Http\Controllers\ContratosController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/* Route::get('/', function () {
-    return view('welcome');
-}); */
 
 Route::get('/', function () {
     return view('auth.login');
 
  });
+
  Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])
  ->group(function () {
      Route::get('/dashboard', function () {
@@ -30,10 +29,16 @@ Route::get('/', function () {
  });
 
 
-
+/* 
 Route::get('/principal', function () {
     return view('pagina.principal');
+}); */
+Route::controller('/principal', EstacionesController::class)-> group(function() {
+    Route::get('/principal', 'index')->name('Estaciones.index');
 });
+
+
+
     //Rutas del CRUD Pagos
 Route::controller(PagosController::class)->group(function() { 
     Route::get('/lista-pagos', 'lista')->name('Pagos.lista'); // Vista de lista Pagos
@@ -45,11 +50,6 @@ Route::controller(PagosController::class)->group(function() {
 });
 
 
-/* Route::get('/alta-pagos', [App\Http\Controllers\PagosController::class, 'alta'])->name('Pagos.alta');
-Route::post('/registro-pagos', [App\Http\Controllers\PagosController::class, 'store'])->name('Pagos.store');
-Route::get('/lista-pagos', [App\Http\Controllers\PagosController::class, 'lista'])->name('Pagos.lista');
-Route::get('/editar-pago/{id}', [App\Http\Controllers\PagosController::class, 'edit'])->name('Pagos.edit'); */
-
 Route::controller(ContratosController::class)->group(function() {
     Route::get('/lista-contratos', 'lista')->name('Contratos.lista');
     Route::post('/registro-contratos', 'store')->name('Contratos.store');
@@ -59,11 +59,6 @@ Route::controller(ContratosController::class)->group(function() {
     Route::get('eliminar-contrato/{id}', 'destroy')->name('Contratos.destroy'); // funcion de editar-pago
 
   });
-/* 
-Route::get('/lista-contratos', [App\Http\Controllers\ContratosController::class, 'lista'])->name('Contratos.lista');
-Route::post('/registro-contratos', [App\Http\Controllers\ContratosController::class, 'store'])->name('Contratos.store');
-Route::get('/alta-contratos', [App\Http\Controllers\ContratosController::class, 'alta'])->name('Contratos.alta'); */
-
 
 
 

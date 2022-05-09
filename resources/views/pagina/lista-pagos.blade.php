@@ -33,7 +33,7 @@
           <td>{{$pago->periodo_pago}}</td>
           <td>{{$pago->monto}}</td>
           <td>
-            <a href="/editar-pago/{{ $pago->id }}" class="btn btn-success">Editar</a>
+            <a href="/editar-pago/{{ $pago->id }}" class="btn btn-primary">Editar</a>
             <a href="/eliminar-pago/{{$pago->id }}"  class="btn btn-danger">Borrar</a>
           </td>
         </tr>

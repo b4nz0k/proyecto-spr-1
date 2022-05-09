@@ -6,22 +6,42 @@
 @stop
 
 @section('content')
-    <h1>Mapa Principal</h1>
-    @php 
-    echo "Esto es una pueba";
-    @endphp
-    <ul>
-        @for ($i=0; $i < 10; $i++) 
-        <li>
-            El valor de i es {{$i}}
-        </li>
-        @endfor
-    </ul>
-    <ul>
-
-    </ul>
-
-</form>
+    <h1>Estaciones</h1>
+    <p>Proximamente un mapa....</p>
+    <p>Mientras una lista</p>
+    <table id="contratos" class="table table-striped mt-4 table-bordered shadow-lg" style="width:100%">
+        <thead>
+          <tr>
+            <th scope="col">Ciudad</th>
+            <th scope="col">Entidad</th>
+            <th scope="col">Grupo</th>
+            <th scope="col">Proveedor</th>
+            <th scope="col">Status</th>
+            <th scope="col">Comentarios</th>
+            <th scope="col">Ultimo Pago</th>
+            <th scope="col">Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{-- @foreach ($estaciones as $estacion ) --}}
+  
+          <tr>
+            <td>{{$estacion->ciudad}}</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>
+              <a href="/ver/000" class="btn btn-success">Mas detalles</a>
+            </td>
+          </tr>
+  
+          {{-- @endforeach --}}
+  
+        </tbody>
+      </table>
 @stop
 
 @section('css')
