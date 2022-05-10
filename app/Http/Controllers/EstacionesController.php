@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Estaciones;
-use App\Models\Ciudades;
+use App\Models\cat_entidad;
+
+
 
 class EstacionesController extends Controller
 {
@@ -15,11 +17,21 @@ class EstacionesController extends Controller
      */
     public function index()
     {
-        // $estaciones = new Estaciones();
+
+            /* $estaciones = Estaciones::find(1)->ciudades;
+            return ($estaciones)->nombre; */
 
         $estaciones = Estaciones::all();
-        $ciudades = Ciudades::all();
-        return view('/principal')->with('estaciones', $estaciones);
+        /* $array = array();
+        foreach ($estaciones as $estacion) {
+            $contratos = Contratos::find($estacion->foranea)->nombre;
+            array_push($array, array(
+                "id"=> $estacion->id,
+                "contrato_id"}}=>$contrato->id;
+            ))
+            # code...
+        } */
+        return view('pagina.principal')->with('estaciones', $estaciones);
 
     }
 

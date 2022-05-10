@@ -33,7 +33,7 @@ Route::get('/', function () {
 Route::get('/principal', function () {
     return view('pagina.principal');
 }); */
-Route::controller('/principal', EstacionesController::class)-> group(function() {
+Route::controller(EstacionesController::class)-> group(function() {
     Route::get('/principal', 'index')->name('Estaciones.index');
 });
 
