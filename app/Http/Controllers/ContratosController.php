@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contratos;
+use App\Models\Estaciones;
+use App\Models\cat_proveedores;
+use App\Models\cat_ciudad;
 
 class contratosController extends Controller
 {
@@ -17,8 +20,14 @@ class contratosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function alta()
-    {
-        return view ('pagina.alta-contratos');
+    {        
+        $estaciones = Estaciones::all();
+        $proveedores = cat_proveedores::all('nombre','tipo');
+
+
+        return view ('pagina.alta-contratos')
+            ->with('proveedores', $proveedores)
+            ->with('estaciones', $estaciones);
     }
 
     public function lista()

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pagos;
+use App\Models\cat_proveedores;
+use App\Models\Contratos;
 
 class PagosController extends Controller
 {
@@ -17,13 +19,18 @@ class PagosController extends Controller
      */
     public function alta()
     {
-        return view ('pagina.alta-pagos');
+        $contratos = Contratos::all();
+        $proveedores = cat_proveedores::all();
+        return view ('pagina.alta-pagos')
+        ->with('proveedores', $proveedores)
+        ->with('contratos', $contratos);
     }
     
     public function lista()
     {
         $pagos = Pagos::all();
-        return view ('pagina.lista-pagos')->with('pagos', $pagos);
+        return view ('pagina.lista-pagos')
+        ->with('pagos', $pagos);
     }
 
     /**
@@ -76,7 +83,8 @@ class PagosController extends Controller
     public function edit($id)
     {
         $pagos = Pagos::find($id);
-        return view ('pagina.editar-pago')->with('pagos', $pagos);
+        return view ('pagina.editar-pago')
+        ->with('pagos', $pagos);
     }
 
     /**

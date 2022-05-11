@@ -31,7 +31,7 @@
             <td>{{($estacion->ciudades)->nombre}}</td>
             <td>{{($estacion->entidades)->nombre}}</td>
             <td>{{$estacion->grupo}}</td>
-            <td>{{$estacion->proveedor}}</td>
+            <td>{{($estacion->proveedores)}} | </td>
             <td>{{$estacion->estatus}}</td>
             <td>{{$estacion->comentarios}}</td>
             <td>ultimo pago</td>
