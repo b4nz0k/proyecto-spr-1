@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Contratos;
 use App\Models\Estaciones;
 use App\Models\cat_proveedores;
-use App\Models\cat_ciudad;
-
 class contratosController extends Controller
 {
     public function __construct() {
