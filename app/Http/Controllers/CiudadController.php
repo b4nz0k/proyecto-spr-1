@@ -6,5 +6,38 @@ use Illuminate\Http\Request;
 
 class CiudadController extends Controller
 {
-    //
+    public function __construct()    {
+        $this->middleware('auth');
+    }
+
+    public function alta()
+    {
+
+    }
+    
+    public function lista()
+    {
+
+    }
+
+    public function store(request $request)
+    {
+ 
+    }
+
+    public function edit($id)
+    {
+
+    }
+
+    public function update(Request $request, $id)
+    {
+
+    }
+
+    public function destroy($id)
+    {
+ 
+    }
+
 }

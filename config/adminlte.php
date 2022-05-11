@@ -260,7 +260,7 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text'    => 'Menu',
+            'text'    => 'Ver mas',
             'icon' => 'fas fas fa-book',
             // 'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
@@ -275,15 +275,35 @@ return [
                     "icon" => 'far fa-fw fa-file'
                 ],
                 [
-                    'text' => 'Lista Contratos',
+                    'text' => 'Contratos',
                     'url'  => 'lista-contratos',
                     "icon" => 'far fa-fw fa-file'
                 ],
                 [
-                    'text' => 'Lista Pagos',
+                    'text' => 'Pagos',
                     'url'  => 'lista-pagos',
                     "icon" => 'far fa-fw fa-file'
                 ],
+                [
+                    'text' => 'Proveedores',
+                    'url'  => 'lista-proveedores',
+                    "icon" => 'far fa-fw fa-file'
+                ],
+                [
+                    'text' => 'Estatus',
+                    'url'  => 'lista-estatus',
+                    "icon" => 'far fa-fw fa-file'
+                ],
+                [
+                    'text' => 'Ciudad',
+                    'url'  => 'lista-ciudades',
+                    "icon" => 'far fa-fw fa-file'
+                ], 
+                [
+                    'text' => 'Entidad',
+                    'url'  => 'lista-entidades',
+                    "icon" => 'far fa-fw fa-file'
+                ],                                               
             ],
         ],
         ['header' => 'Pagos'],

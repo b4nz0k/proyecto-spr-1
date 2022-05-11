@@ -12,11 +12,7 @@ class PagosController extends Controller
     public function __construct()    {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function alta()
     {
         $contratos = Contratos::all();
@@ -33,22 +29,6 @@ class PagosController extends Controller
         ->with('pagos', $pagos);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(request $request)
     {
         $pagos = new Pagos();
@@ -63,23 +43,6 @@ class PagosController extends Controller
         return ($pagos);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $pagos = Pagos::find($id);
@@ -87,13 +50,6 @@ class PagosController extends Controller
         ->with('pagos', $pagos);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
           $pago = Pagos::find($id);
@@ -107,16 +63,8 @@ class PagosController extends Controller
         $pago->save();
         // $pagos->monto = $request->monto;
         return redirect('lista-pagos');
-       
-
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $pago = Pagos::find($id);

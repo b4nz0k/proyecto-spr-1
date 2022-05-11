@@ -11,17 +11,11 @@ class contratosController extends Controller
     public function __construct() {
         $this->middleware('auth');
     }
-    
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function alta()
     {        
         $estaciones = Estaciones::all();
         $proveedores = cat_proveedores::all('nombre','tipo');
-
 
         return view ('pagina.alta-contratos')
             ->with('proveedores', $proveedores)
@@ -34,22 +28,6 @@ class contratosController extends Controller
         return view ('pagina.lista-contratos')->with('contratos', $contratos);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $contratos = new Contratos();
@@ -66,36 +44,17 @@ class contratosController extends Controller
         return redirect('lista-contratos');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $contratos = Contratos::find($id);
         return view ('pagina.editar-contrato')->with('contratos', $contratos);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $contratos = Contratos::find($id);
@@ -111,12 +70,6 @@ class contratosController extends Controller
         return redirect('lista-contratos');   
      }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $contrato = Contratos::find($id);
