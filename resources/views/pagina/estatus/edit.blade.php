@@ -14,6 +14,7 @@
       <h1>Editar Estatus</h1>
       <label for="">Estatus</label>
       <input class="form-control" type="text" value="{{$estatus->estatus}}" name="estatus">
+      <a href="{{route('Estatus.lista')}}" class="btn btn-primary mb-2">Atras</a>
       <button type="submit" class="btn btn-primary mb-2">Actualizar</button>
     </form>
 </div>
