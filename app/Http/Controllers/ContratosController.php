@@ -74,5 +74,6 @@ class contratosController extends Controller
     {
         $contrato = Contratos::find($id);
         $contrato->delete();
-        return redirect('lista-contratos');    }
+        return redirect('lista-contratos');    
+    }
 }
