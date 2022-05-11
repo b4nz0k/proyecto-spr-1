@@ -21,7 +21,7 @@
       <input class="form-control" type="number" value="{{$contratos->id_estacion}}" name="id_estacion"> 
       <label for="">Importe Mensual</label>
       <input class="form-control" type="number" value="{{$contratos->importe_mensual}}" name="importe_mensual">
-      <button type="submit" class="btn btn-primary mb-2">Registrar</button>
+      <button type="submit" class="btn btn-primary mb-2">Actualizar</button>
     </form>
 
 @stop

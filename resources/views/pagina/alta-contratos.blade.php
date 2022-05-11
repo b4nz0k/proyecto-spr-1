@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Alta Contratos')
 
 @section('content_header')
 @stop
@@ -10,7 +10,7 @@
       @csrf
       <h1>Registrar Contrato</h1>
 
-      <label for="">Proovedor</label>
+      <label for="">Proveedor</label>
       <select class="form-select" aria-label="Default select example" name="proveedor">
         <option selected>Proveedor</option>
 

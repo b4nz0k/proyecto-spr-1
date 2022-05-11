@@ -64,9 +64,9 @@ Route::controller(ProveedoresController::class)->group(function() {
     Route::get('lista-proveedores', 'lista')->name('Proveedores.lista');    // Vista de lista
     Route::post('registro-proveedores', 'store')->name('Proveedores.store');    // funcion POST registrar
     Route::get('alta-proveedores', 'alta')->name('Proveedores.alta');       // Vista de formulario altas
-    Route::get('editar-proveedores/{id}', 'edit')->name('Proveedores.edit'); // Vista de formulario editar-
-    Route::post('editar-proveedores/{id}', 'update')->name('Proveedores.update'); // funcion de editar
-    Route::get('eliminar-proveedores/{id}', 'destroy')->name('Proveedores.destroy'); // funcion de editar-pago
+    Route::get('editar-proveedor/{id}', 'edit')->name('Proveedores.edit'); // Vista de formulario editar-
+    Route::post('editar-proveedor/{id}', 'update')->name('Proveedores.update'); // funcion de editar
+    Route::get('eliminar-proveedor/{id}', 'destroy')->name('Proveedores.destroy'); // funcion de editar-pago
   });
 
 
