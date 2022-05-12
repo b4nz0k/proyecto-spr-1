@@ -30,7 +30,10 @@
             <option selected>Selecciona un Contrato</option>
     
             @foreach ($contratos as $contratos )
-            <option value="{{($contratos->id) }}">{{($contratos->num_contrato)}} | {{($contratos->ciudades)->nombre}}</option>
+            @php
+            $ciudad = isset(($contratos->ciudades)->nombre) ? (($contratos->ciudades)->nombre) : "nulo";
+            @endphp
+            <option value="{{($contratos->id) }}">{{($contratos->num_contrato)}} | {{($ciudad)}}</option>
             @endforeach
         </select>
         {{-- <input class="form-control" type="text" placeholder="Contrato" name="contrato"> --}}

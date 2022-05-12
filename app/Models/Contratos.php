@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\cat_proveedores;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\cat_proveedores;
+use App\Models\Estaciones;
 
 class Contratos extends Model
 {
@@ -16,8 +17,12 @@ class Contratos extends Model
     {
         return $this->hasOne(cat_proveedores::class, 'id', 'proveedor');
     } */
-    public function ciudades()
+    public function estaciones_tabla()
     {
-        return $this->hasOne(cat_ciudad::class, 'id', 'id_estacion');
+        return $this->hasOne(Estaciones::class, 'id', 'id_estacion');
+    }
+    public function proveedores_tabla()
+    {
+        return $this->hasOne(cat_proveedores::class, 'id', 'proveedor');
     }
 }

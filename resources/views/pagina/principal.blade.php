@@ -24,15 +24,21 @@
         </thead>
         <tbody>
           
-          @foreach ($estaciones as $estacion )
-          
+          @foreach ($estaciones as $estacion  )
+          @php
+            //  $entidad =($entidades->find($estacion->id));
+            $entidad = isset(($estacion->entidades)->nombre) ? (($estacion->entidades)->nombre) : "nulo";
+            $proveedor = isset(($estacion->proveedores)->nombre) ? (($estacion->proveedores)->nombre) : "nulo";
+            $estatus = isset(($estacion->estatus_tabla)->estatus) ? (($estacion->estatus_tabla)->estatus) : "nulo";
+
+          @endphp
           <tr>
             
-            <td>{{($estacion->ciudades)->nombre}}</td>
-            <td>{{($estacion->entidades)->nombre}}</td>
+            <td>{{ ($estacion->ciudades)->nombre }}</td>
+            <td>{{  ($entidad) }}</td>
             <td>{{$estacion->grupo}}</td>
-            <td>{{($estacion->proveedores)}} | </td>
-            <td>{{$estacion->estatus}}</td>
+            <td>{{ ($proveedor) }} | </td>
+            <td>{{ ($estatus) }}</td>
             <td>{{$estacion->comentarios}}</td>
             <td>ultimo pago</td>
             <td>

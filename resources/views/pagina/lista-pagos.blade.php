@@ -14,6 +14,7 @@
     <table id="contratos" class="table table-striped mt-4 table-bordered shadow-lg" style="width:100%">
       <thead>
         <tr>
+          <th scope="col">ID</th>
           <th scope="col">Fecha de solicitud</th>
           <th scope="col">Fecha de pago</th>
           <th scope="col">Numero de recibo de factura</th>
@@ -27,10 +28,16 @@
         @foreach ($pagos as $pago )
 
         <tr>
+          <td>{{$pago->id}}</td>
           <td>{{$pago->fecha_solicitud}}</td>
           <td>{{$pago->fecha_pago}}</td>
           <td>{{$pago->num_recibo_factura}}</td>
-          <td>{{$pago->contrato}}</td>
+
+          @php
+          $contrato = isset(($pago->contratos_tabla)->num_contrato) ? (($pago->contratos_tabla)->num_contrato) : "nulo";
+          @endphp
+                
+          <td>{{($contrato)}}</td>
           <td>{{$pago->periodo_pago}}</td>
           <td>{{$pago->monto}}</td>
           <td>

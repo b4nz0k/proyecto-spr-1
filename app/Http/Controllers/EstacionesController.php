@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Estaciones;
+use App\Models\Pagos;
 
 
 
@@ -15,9 +16,10 @@ class EstacionesController extends Controller
 
             /* $estaciones = Estaciones::find(1)->ciudades;
             return ($estaciones)->nombre; */
-
         $estaciones = Estaciones::all();
-        /* $array = array();
+        $pagos = Pagos::all();
+        // return ($estaciones)->id;
+         /* $array = array();
         foreach ($estaciones as $estacion) {
             $contratos = Contratos::find($estacion->foranea)->nombre;
             array_push($array, array(
@@ -26,8 +28,9 @@ class EstacionesController extends Controller
             ))
             # code...
         } */
-        return view('pagina.principal')->with('estaciones', $estaciones);
 
+        return view('pagina.principal')
+        ->with('estaciones', $estaciones);
     }
 
 
