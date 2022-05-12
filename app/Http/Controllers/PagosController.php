@@ -40,7 +40,7 @@ class PagosController extends Controller
         $pagos->monto = $request->monto;
         $pagos->save();
         // return ("Prueba de POST");
-        return ($pagos);
+        return redirect('lista-pagos');
     }
 
     public function edit($id)
