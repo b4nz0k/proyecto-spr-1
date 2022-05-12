@@ -9,8 +9,8 @@
 <h1>Lista de Entidades</h1>
 <a href="{{route('Entidad.alta')}}" class="btn btn-primary">Crear Nuevo</a>
 
-
-    <table id="contratos" class="table table-striped mt-4 table-bordered shadow-lg" style="width:100%">
+<div class="container-md ml-2 col-10 container-sm" >
+  <table id="contratos" class="table table-striped mt-4 table-bordered shadow-lg" style="width:100%">
       <thead>
        <tr>
           <th scope="col">Nombre</th>
@@ -42,7 +42,7 @@
 
       </tbody>
     </table>
-
+</div>
 
 @stop
 

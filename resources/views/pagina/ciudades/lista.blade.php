@@ -10,11 +10,13 @@
 <a href="{{route('Ciudad.alta')}}" class="btn btn-primary">Crear Nuevo</a>
 
 <div class="container-md ml-2 col-6" >
-    <table id="contratos" class="table table-striped mt-4 table-bordered shadow-l" style="width:100%">
-      <thead>
+  <table id="contratos" class="table table-striped mt-4 table-bordered shadow-lg" style="width:100%">
+    <thead>
        <tr>
           <th scope="col">ID</th>
           <th scope="col">Nombre</th>
+          <th scope="col">Accion</th>
+
         </tr>
       </thead>
       <tbody>

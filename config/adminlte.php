@@ -260,35 +260,25 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+            'text' => 'Contratos',
+            'url'  => 'lista-contratos',
+            "icon" => 'far fa-fw fa-file'
+        ],
+        [
+            'text' => 'Pagos',
+            'url'  => 'lista-pagos',
+            "icon" => 'far fa-fw fa-file'
+        ],
+        [
+            'text' => 'Proveedores',
+            'url'  => 'lista-proveedores',
+            "icon" => 'far fa-fw fa-file'
+        ],
+        [
             'text'    => 'Ver mas',
             'icon' => 'fas fas fa-book',
             // 'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
-                [
-                    'text' => 'Alta Contratos',
-                    'url'  => 'alta-contratos',
-                    "icon" => 'far fa-fw fa-file'
-                ],
-                [
-                    'text'    => 'Alta Pagos',
-                    'url'     => 'alta-pagos',
-                    "icon" => 'far fa-fw fa-file'
-                ],
-                [
-                    'text' => 'Contratos',
-                    'url'  => 'lista-contratos',
-                    "icon" => 'far fa-fw fa-file'
-                ],
-                [
-                    'text' => 'Pagos',
-                    'url'  => 'lista-pagos',
-                    "icon" => 'far fa-fw fa-file'
-                ],
-                [
-                    'text' => 'Proveedores',
-                    'url'  => 'lista-proveedores',
-                    "icon" => 'far fa-fw fa-file'
-                ],
                 [
                     'text' => 'Estatus',
                     'url'  => 'lista-estatus',

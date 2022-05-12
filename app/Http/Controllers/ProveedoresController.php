@@ -16,7 +16,6 @@ class ProveedoresController extends Controller
         $proveedores = cat_proveedores::all();
         return view ('pagina.proveedores.lista')
         ->with('proveedores', $proveedores);
-
     }
 
     public function alta()

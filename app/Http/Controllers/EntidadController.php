@@ -29,7 +29,12 @@ class EntidadController extends Controller
     {
         $entidad = new cat_entidad();
         $entidad->nombre = $request->nombre;
-        // return ($proveedores);
+        $entidad->abrev = $request->abrev;
+        $entidad->pob_tot = $request->pob_tot;
+        $entidad->pob_masc = $request->pob_masc;
+        $entidad->pob_fem = $request->pob_fem;
+
+        // return ($entidad);
         $entidad->save();
 
         return redirect('lista-entidades');
@@ -46,6 +51,10 @@ class EntidadController extends Controller
     {
         $entidades = cat_entidad::find($id);
         $entidades->nombre = $request->nombre;
+        $entidades->abrev = $request->abrev;
+        $entidades->pob_tot = $request->pob_tot;
+        $entidades->pob_masc = $request->pob_masc;
+        $entidades->pob_fem = $request->pob_fem;
         $entidades->save();
         return redirect('lista-entidades');
     }

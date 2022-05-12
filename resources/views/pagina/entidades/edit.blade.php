@@ -6,20 +6,22 @@
 @stop
 
 @section('content')
-<form action="/editar-entidad/{{$proveedores->id}}" method="POST">
+<div class="container-md ml-2 col-6" >
+
+<form action="/editar-entidad/{{$entidades->id}}" method="POST">
     @csrf
       <h1>Editar Entidad</h1>
       <label for="">Nombre</label>
       <input class="form-control" type="text" value="{{$entidades->nombre}}" name="nombre">
       <label for="">Abreviacion</label>
-      <input class="form-control" type="text" value="{{$entidades->razon_social}}" name="abrev">
+      <input class="form-control" type="text" value="{{$entidades->abrev}}" name="abrev">
       <label for="">Poblacion Total</label>
-      <input class="form-control" type="text" value="{{$entidades->tipo}}" name="pob_tot">
+      <input class="form-control" type="text" value="{{$entidades->pob_tot}}" name="pob_tot">
       <label for="">Poblacion Masc</label>
-      <input class="form-control" type="text" value="{{$entidades->tipo}}" name="pob_masc">
+      <input class="form-control" type="text" value="{{$entidades->pob_masc}}" name="pob_masc">
       <label for="">Poblacion Fem</label>
-      <input class="form-control" type="text" value="{{$entidades->tipo}}" name="pob_fem">
+      <input class="form-control" type="text" value="{{$entidades->pob_fem}}" name="pob_fem">
       <button type="submit" class="btn btn-primary mb-2">Actualizar</button>
-    </form>
+    </form></div>
 
 @stop
