@@ -4,7 +4,11 @@
 
 @section('content_header')
 @stop
-
+    @if (session()->has('msj'))
+    <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
+    @else
+    <div class="alert alert-damage" role="alert"> </div>
+    @endif
 @section('content')
 <h1>Lista de Estatus</h1>
 <a href="{{route('Estatus.alta')}}" class="btn btn-primary">Crear Nuevo</a>

@@ -15,17 +15,19 @@ class PagosController extends Controller
 
     public function alta()
     {
+        
         $contratos = Contratos::all();
         $proveedores = cat_proveedores::all();
-        return view ('pagina.alta-pagos')
+        return view ('pagina.pagos.alta')
         ->with('proveedores', $proveedores)
         ->with('contratos', $contratos);
     }
     
     public function lista()
     {
+
         $pagos = Pagos::all();
-        return view ('pagina.lista-pagos')
+        return view ('pagina.pagos.lista')
         ->with('pagos', $pagos);
     }
 
@@ -38,15 +40,18 @@ class PagosController extends Controller
         $pagos->num_recibo_factura = $request->num_recibo_factura;
         $pagos->contrato = $request->contrato;
         $pagos->monto = $request->monto;
-        $pagos->save();
+        if ($pagos->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        else return back();
+
+        // $pagos->save();
         // return ("Prueba de POST");
-        return redirect('lista-pagos');
+        // return redirect('lista-pagos');
     }
 
     public function edit($id)
     {
         $pagos = Pagos::find($id);
-        return view ('pagina.editar-pago')
+        return view ('pagina.pagos.edit')
         ->with('pagos', $pagos);
     }
 
@@ -60,15 +65,19 @@ class PagosController extends Controller
         $pago->num_recibo_factura = $request->num_recibo_factura;
         $pago->contrato = $request->contrato;
         $pago->monto = $request->monto;
-        $pago->save();
+        if ($pago->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        else return back();
+        // $pago->save();
         // $pagos->monto = $request->monto;
-        return redirect('lista-pagos');
+        // return redirect('lista-pagos');
     }
 
     public function destroy($id)
     {
         $pago = Pagos::find($id);
-        $pago->delete();
-        return redirect('lista-pagos');
+        if ($pago->delete()) return back()->with('msj', "Los datos se eliminaron correctamente!");
+        else return back();
+        // $pago->delete();
+        // return redirect('lista-pagos');
     }
 }

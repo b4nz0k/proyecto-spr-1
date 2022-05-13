@@ -4,7 +4,11 @@
 
 @section('content_header')
 @stop
-
+  @if (session()->has('msj'))
+    <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
+    @else
+    <div class="alert alert-damage" role="alert"> </div>
+  @endif
 @section('content')
     <form action="{{route('Contratos.store')}}" method="post">
       @csrf
@@ -44,6 +48,7 @@
       </select>
       <label for="">Importe Mensual</label>
       <input class="form-control" type="number" placeholder="$" name="importe_mensual">
+      <a href="{{route('Contratos.lista')}}" class="btn btn-primary">Atras</a>
 
       
               {{-- Empiza el boton modal --}}

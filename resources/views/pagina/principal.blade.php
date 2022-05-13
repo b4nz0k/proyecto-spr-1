@@ -6,6 +6,7 @@
 @stop
 
 @section('content')
+
     <h1>Estaciones</h1>
     <p>Proximamente un mapa....</p>
     <p>Mientras una lista</p>
@@ -50,4 +51,8 @@
   
         </tbody>
       </table>
+
+
+
+      
 @stop

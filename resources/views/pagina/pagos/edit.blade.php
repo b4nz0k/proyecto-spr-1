@@ -4,7 +4,11 @@
 
 @section('content_header')
 @stop
-
+    @if (session()->has('msj'))
+    <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
+    @else
+    <div class="alert alert-damage" role="alert"> </div>
+    @endif
 @section('content')
 
 {{-- <form action="{{route('Pagos.update')}}/{{$pagos->id}}" method="POST">
@@ -25,7 +29,7 @@
     <label for="">Monto</label>
     <input class="form-control" type="text" value="{{$pagos->monto}}" name="monto">
 
-
+    <a href="{{route('Pagos.lista')}}" class="btn btn-primary">Atras</a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
         Actualizar
     </button>

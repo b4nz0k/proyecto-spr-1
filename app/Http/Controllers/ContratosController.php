@@ -20,7 +20,7 @@ class contratosController extends Controller
         $estaciones = Estaciones::all();
         $proveedores = cat_proveedores::all('id', 'nombre','tipo');
 
-        return view ('pagina.alta-contratos')
+        return view ('pagina.contratos.alta')
             ->with('proveedores', $proveedores)
             ->with('estaciones', $estaciones);
     }
@@ -32,7 +32,7 @@ class contratosController extends Controller
         $entidades = cat_entidad::all('id', 'nombre');
         $contratos = Contratos::all();
 
-        return view ('pagina.lista-contratos')
+        return view ('pagina.contratos.lista')
         ->with('estaciones', $estaciones)
         ->with('ciudades', $ciudades)
         ->with('entidades', $entidades )
@@ -51,8 +51,9 @@ class contratosController extends Controller
         $contratos->importe_mensual = $request->importe_mensual;
         // return ($contratos);
 
-        $contratos->save();
-        return redirect('lista-contratos');
+        if ($contratos->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        else return back();
+                // return redirect('lista-contratos');
     }
 
     public function show($id)
@@ -65,7 +66,7 @@ class contratosController extends Controller
         $estaciones = Estaciones::all();
         $proveedores = cat_proveedores::all('id', 'nombre','tipo');
         $contratos = Contratos::find($id);
-        return view ('pagina.editar-contrato')
+        return view ('pagina.contratos.edit')
         ->with('proveedores', $proveedores)
         ->with('estaciones', $estaciones)
         ->with('contratos', $contratos);
@@ -81,15 +82,19 @@ class contratosController extends Controller
         $contratos->dia_corte_mensual = $request->dia_corte_mensual;
         $contratos->id_estacion = $request->id_estacion;
         $contratos->importe_mensual = $request->importe_mensual;
-        $contratos->save();
+        
+        if ($contratos->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        else return back();
+        
         // return ("Prueba de POST");
-        return redirect('lista-contratos');   
+        // return redirect('lista-contratos');   
      }
 
     public function destroy($id)
     {
         $contrato = Contratos::find($id);
-        $contrato->delete();
-        return redirect('lista-contratos');    
+        // $contrato->delete();
+        if ($contrato->delete()) return back()->with('msj', "Los datos se eliminaron correctamente!");
+        else return back();
     }
 }

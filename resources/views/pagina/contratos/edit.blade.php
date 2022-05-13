@@ -4,7 +4,11 @@
 
 @section('content_header')
 @stop
-
+    @if (session()->has('msj'))
+    <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
+    @else
+    <div class="alert alert-damage" role="alert"> </div>
+    @endif
 @section('content')
 <form action="/editar-contrato/{{$contratos->id}}" method="POST">
     @csrf
@@ -47,7 +51,7 @@
       <label for="">Importe Mensual</label>
       <input class="form-control" type="number" value="{{$contratos->importe_mensual}}" name="importe_mensual">
 
-      
+      <a href="{{route('Contratos.lista')}}" class="btn btn-primary">Atras</a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
       Actualizar
   </button>

@@ -4,7 +4,11 @@
 
 @section('content_header')
 @stop
-
+    @if (session()->has('msj'))
+    <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
+    @else
+    <div class="alert alert-damage" role="alert"> </div>
+    @endif
 @section('content')
     <form action="{{route('Pagos.store')}}" method="POST">
         
@@ -40,6 +44,9 @@
         <label for="">Monto</label>
         <input class="form-control" type="text" placeholder="$" name="monto">
         {{-- Empiza el boton modal --}}
+
+        <a href="{{route('Pagos.lista')}}" class="btn btn-primary">Atras</a>
+
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
             Guardar
         </button>

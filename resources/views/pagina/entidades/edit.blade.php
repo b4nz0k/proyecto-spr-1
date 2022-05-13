@@ -4,7 +4,11 @@
 
 @section('content_header')
 @stop
-
+    @if (session()->has('msj'))
+    <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
+    @else
+    <div class="alert alert-damage" role="alert"> Error al guardar los datos</div>
+    @endif
 @section('content')
 <div class="container-md ml-2 col-6" >
 
