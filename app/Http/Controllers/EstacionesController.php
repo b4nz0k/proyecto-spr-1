@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Estaciones;
 use App\Models\Pagos;
+use App\Models\Contratos;
+
 
 
 
@@ -17,7 +19,8 @@ class EstacionesController extends Controller
             /* $estaciones = Estaciones::find(1)->ciudades;
             return ($estaciones)->nombre; */
         $estaciones = Estaciones::all();
-        $pagos = Pagos::all();
+        $pagoss = Pagos::all();
+        $contratoss = Contratos::all();
         // return ($estaciones)->id;
          /* $array = array();
         foreach ($estaciones as $estacion) {
@@ -30,7 +33,9 @@ class EstacionesController extends Controller
         } */
 
         return view('pagina.principal')
-        ->with('estaciones', $estaciones);
+        ->with('estaciones', $estaciones)
+        ->with('contratoss', $contratoss)
+        ->with('pagoss', $pagoss);
     }
 
 

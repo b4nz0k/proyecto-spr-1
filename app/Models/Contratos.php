@@ -19,10 +19,10 @@ class Contratos extends Model
     } */
     public function estaciones_tabla()
     {
-        return $this->hasOne(Estaciones::class, 'id', 'id_estacion');
+        // return $this->hasOne(Estaciones::class, 'id', 'id_estacion');
     }
     public function proveedores_tabla()
     {
-        return $this->hasOne(cat_proveedores::class, 'id', 'proveedor');
+        // return $this->hasOne(cat_proveedores::class, 'id', 'proveedor');
     }
 }

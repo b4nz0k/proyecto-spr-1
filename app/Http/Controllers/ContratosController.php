@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Models\Contratos;
 use App\Models\Estaciones;
@@ -19,6 +20,12 @@ class contratosController extends Controller
     {        
         $estaciones = Estaciones::all();
         $proveedores = cat_proveedores::all('id', 'nombre','tipo');
+                $ciudades_ordenado = array();        
+                foreach ($estaciones as $estacion) {
+                    array_push($ciudades_ordenado, ['nombre' => ($estacion->ciudades)->nombre],
+                                                   ['id' => $estacion->id]);
+                }
+        // return Arr::sort($ciudades_ordenado);
 
         return view ('pagina.contratos.alta')
             ->with('proveedores', $proveedores)
@@ -28,6 +35,7 @@ class contratosController extends Controller
     public function lista()
     {
         $estaciones = Estaciones::all('id', 'grupo', 'ciudad', 'entidad');
+                
         $ciudades = cat_ciudad::all('id', 'nombre');
         $entidades = cat_entidad::all('id', 'nombre');
         $contratos = Contratos::all();

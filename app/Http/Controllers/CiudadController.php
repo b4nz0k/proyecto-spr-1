@@ -57,7 +57,7 @@ class CiudadController extends Controller
     {
         $ciudad = cat_ciudad::find($id);
         // $ciudad->delete();
-        if ($ciudad->delete()) return back()->with('msj', "Los datos se eliminado correctamente!");
+        if ($ciudad->delete()) return back()->with('msj', "Los datos se eliminaron correctamente!");
         else return back();
 
         // return redirect('lista-ciudades');   

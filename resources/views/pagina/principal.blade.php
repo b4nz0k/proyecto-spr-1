@@ -28,10 +28,13 @@
           @foreach ($estaciones as $estacion  )
           @php
             //  $entidad =($entidades->find($estacion->id));
-            $entidad = isset(($estacion->entidades)->nombre) ? (($estacion->entidades)->nombre) : "nulo";
-            $proveedor = isset(($estacion->proveedores)->nombre) ? (($estacion->proveedores)->nombre) : "nulo";
-            $estatus = isset(($estacion->estatus_tabla)->estatus) ? (($estacion->estatus_tabla)->estatus) : "nulo";
-
+            $entidad = isset(($estacion->entidades)->nombre) ? (($estacion->entidades)->nombre) : "Sin Entidad";
+            $proveedor = isset(($estacion->proveedores)->nombre) ? (($estacion->proveedores)->nombre) : "Sin Proveedor";
+            $estatus = isset(($estacion->estatus_tabla)->estatus) ? (($estacion->estatus_tabla)->estatus) : "Sin Estatus";
+            $id_contrato = (($contratoss)->estaciones_tabla)->id;
+            // $cpagos = (($pagoss)->find($id_contrato));
+            return var_dump($id_contrato);
+            // $id_pagos = $pagos->find($id_proveedor)->monto;
           @endphp
           <tr>
             
@@ -41,7 +44,7 @@
             <td>{{ ($proveedor) }} | </td>
             <td>{{ ($estatus) }}</td>
             <td>{{$estacion->comentarios}}</td>
-            <td>ultimo pago</td>
+            <td>{{$id_pagos}}</td>
             <td>
               <a href="/ver/000" class="btn btn-success">Mas detalles</a>
             </td>

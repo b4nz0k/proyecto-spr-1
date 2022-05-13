@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\cat_proveedores;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class ProveedoresController extends Controller
 {
@@ -13,7 +14,26 @@ class ProveedoresController extends Controller
 
     public function lista()
     {
-        $proveedores = cat_proveedores::all();
+        $proveedores = cat_proveedores::all('id', 'nombre', 'razon_social', 'tipo');
+/*         $proveedores_array = array();
+        foreach ($proveedores as $proveedor) {
+                array_push($proveedores_array,([
+                    'id' =>  ($proveedor->id),
+                    'nombre' =>  ($proveedor->nombre),
+                    'razon_social' =>  ($proveedor->razon_social),
+                    'tipo' =>  ($proveedor->tipo)
+             ]));
+                    
+        }   
+        $proveedores_array2 = array();
+                foreach ( $proveedores as $ordenp) {
+                    array_push($proveedores_array2, $ordenp->nombre );
+                }
+         $nombres = Arr::sort ($proveedores_array2);
+         return dd($nombres); */
+        // return dd($proveedores_array);
+
+        
         return view ('pagina.proveedores.lista')
         ->with('proveedores', $proveedores);
     }
