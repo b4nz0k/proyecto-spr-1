@@ -5,12 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Estaciones;
 use App\Models\Pagos;
+use App\Models\cat_ciudad;
+use App\Models\cat_entidad;
+use App\Models\cat_estatus;
+use App\Models\cat_proveedores;
 use App\Models\Contratos;
 use Carbon\Carbon;
 use SebastianBergmann\Diff\Diff;
 
 class EstacionesController extends Controller
 {
+    
+
+
     public function fechas($dateget, $dia_corte) {
         $carbon = new Carbon();
         $date_hoy = $carbon->now(); // 
@@ -71,14 +78,46 @@ class EstacionesController extends Controller
             $estatusnew = EstacionesController::fechas($pago->fecha_pago , $dia_corte );
             $pago->status = $estatusnew;
             $pago->save();
-            echo "pago id = ". $pago->id . ", contrato ". $pago->contrato . ", num Corte del contrato = ". $dia_corte . ", Fecha ult Pago:". $pago->fecha_pago . ", Estatus: ". $estatusnew ."<br>" ;
+            // echo "pago id = ". $pago->id . ", contrato ". $pago->contrato . ", num Corte del contrato = ". $dia_corte . ", Fecha ult Pago:". $pago->fecha_pago . ", Estatus: ". $estatusnew ."<br>" ;
         }
+    }
+    public function alta () {
+
+        $estaciones = Estaciones::all();
+        $contratos = Contratos::all();   
+        $ciudades = cat_ciudad::all();
+        $entidades = cat_entidad::all();
+        $estatus = cat_estatus::all();
+        $proveedores = cat_proveedores::all();
+
+
+            return view('pagina.estaciones.alta')
+                ->with('estaciones', $estaciones)
+                ->with('contratos', $contratos)
+                ->with('ciudades', $ciudades)
+                ->with('entidades', $entidades)
+                ->with('estatus', $estatus)
+                ->with('proveedores', $proveedores);
     }
 
     public function store(Request $request)
     {
-        //
+        $estaciones = new Estaciones();
+        $estaciones->ciudad = $request->ciudad;
+        $estaciones->entidad = $request->entidad;
+        $estaciones->grupo = $request->grupo;
+        $estaciones->latitud = $request->latitud;
+        $estaciones->longitud = $request->longitud;
+        $estaciones->proveedor = $request->proveedor;
+        $estaciones->estatus = $request->estatus;
+        $estaciones->comentarios = $request->comentarios;
+
+        return ($estaciones);
+        // $estaciones->save();
+/*         if ($estaciones->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        else return back(); */
     }
+        // return redirect('lista-entidades');    }
 
     public function edit($id)
     {

@@ -10,6 +10,7 @@
     <h1>Estaciones</h1>
     <p>Proximamente un mapa....</p>
     <p>Mientras una lista</p>
+    <a href="{{route('Estaciones.alta')}}" class="btn btn-primary">Crear Nuevo</a>
     <table id="contratos" class="table table-striped mt-4 table-bordered shadow-lg" style="width:100%">
         <thead>
           <tr >
@@ -37,6 +38,7 @@
             // Buscando el contrato y el pago correpondiente
                 $contrato = ($contratoss)->where('id_estacion', '==',$estacion->id)->first();
                 $contrato = isset($contrato->id) ? ($contrato->id) : 'Sin Contrato' ;
+            //Buscando el pago correspondiente
                 $pago =($pagoss)->where('contrato','==',  ($contrato))->first();
                 $pago_estatus = isset($pago->status) ?  ($pago->status) : 5;
                 $pago = isset($pago->fecha_pago) ?  ($pago->fecha_pago) : "No hay pago registrado";

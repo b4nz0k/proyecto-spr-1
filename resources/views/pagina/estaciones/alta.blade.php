@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Alta Contratos')
+@section('title', 'Alta Estaciones')
 
 @section('content_header')
 @stop
@@ -10,29 +10,44 @@
     <div class="alert alert-damage" role="alert"> </div>
   @endif
 @section('content')
-    <form action="{{route('Contratos.store')}}" method="post">
+    <form action="{{route('Estaciones.store')}}" method="post">
       @csrf
       <h1>Registrar Estacion</h1>
+        
+      <label for="">Contrato</label>
+      <select class="form-select" aria-label="Default select example" name="contrato">
+        <option selected>Contrato</option>
+        @foreach ($contratos as $contrato )
 
-      <label for="">Estacion</label>
-      <select class="form-select" aria-label="Default select example" name="id_estacion">
-        <option selected>Selecciona una Estacion</option>
-
-        @foreach ($estaciones as $estacion )
-        @php
-           $entidad = isset(($estacion->entidades)->nombre) ? (($estacion->entidades)->nombre) : "nulo";
-        @endphp
-
-        <option value="{{$estacion->id}}">{{($estacion->ciudades)->nombre}} / {{ $entidad }}</option>
+        <option value="{{$contrato->id}}">
+          {{$contrato->num_contrato}}
+          </option>
         @endforeach
       </select>
 
-      <label for="">Fecha de inicio</label>
-      <input class="form-control" type="date" placeholder="Fecha de inicio" name="fecha_inicio">
-      <label for="">Contrato</label>
-      <input class="form-control" type="text" placeholder="Nombre del Contrato" name="num_contrato">
-      <label for="">Dia de corte</label>
-      <input class="form-control" type="number" placeholder="Fecha de corte" name="dia_corte_mensual">
+      <label for="">Ciudad</label>
+      <select class="form-select" aria-label="Default select example" name="ciudad">
+
+        <option selected>Ciudad</option>
+        @foreach ($ciudades as $ciudad )
+
+        <option value="{{$ciudad->id}}">
+          {{$ciudad->nombre}}
+          </option>
+        @endforeach
+      </select>
+
+
+      <label for="">Entidad</label>
+      <select class="form-select" aria-label="Default select example" name="entidad">
+       @foreach ($entidades as $entidad )
+
+      <option value="{{$entidad->id}}">
+        {{$entidad->nombre}}
+        </option>
+      @endforeach
+    </select>
+
 
       <label for="">Proveedor</label>
       <select class="form-select" aria-label="Default select example" name="proveedor">
@@ -44,11 +59,45 @@
               {{$proveedor->nombre}}  /  {{$proveedor->tipo}}
               </option>
             @endforeach
+      </select>
+
+
+      <label for="">Referencia</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Referencia de la estacion..." name="referencia"></textarea>
+
+
+      <label for="">Estatus</label>
+      <select class="form-select" aria-label="Default select example" name="estatus">
+        <option selected>Estatus</option>
+
+            @foreach ($estatus as $estatu )
+
+            <option value="{{$estatu->id}}">
+              {{$estatu->estatus}}
+              </option>
+            @endforeach
 
       </select>
-      <label for="">Importe Mensual</label>
-      <input class="form-control" type="number" placeholder="$" name="importe_mensual">
-      <a href="{{route('Contratos.lista')}}" class="btn btn-primary">Atras</a>
+
+      <label for="">Grupo</label>
+      <select class="form-select" aria-label="Default select example" name="grupo">
+        <option selected>Grupo</option>
+            <option value="Sitios nuevos">Sitios nuevos</option>
+            <option value="Sitio actual SPR">Sitio actual SPR</option>
+            <option value="Apertura 2022">Apertura 2022</option>
+      </select>
+
+      
+      <label for="">Latitud</label>
+      <input class="form-control" type="text" placeholder="latitud..." name="latitud">
+      <label for="">Longitud</label>
+      <input class="form-control" type="text" placeholder="longitud..." name="longitud">
+
+      <label for="">Comentarios</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Comentarios de la estacion..." name="comentarios"></textarea>
+
+
+      <a href="{{route('Estaciones.index')}}" class="btn btn-primary">Atras</a>
 
       
               {{-- Empiza el boton modal --}}
