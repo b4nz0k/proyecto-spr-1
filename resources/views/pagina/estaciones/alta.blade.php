@@ -13,17 +13,6 @@
     <form action="{{route('Estaciones.store')}}" method="post">
       @csrf
       <h1>Registrar Estacion</h1>
-        
-      <label for="">Contrato</label>
-      <select class="form-select" aria-label="Default select example" name="contrato">
-        <option selected>Contrato</option>
-        @foreach ($contratos as $contrato )
-
-        <option value="{{$contrato->id}}">
-          {{$contrato->num_contrato}}
-          </option>
-        @endforeach
-      </select>
 
       <label for="">Ciudad</label>
       <select class="form-select" aria-label="Default select example" name="ciudad">

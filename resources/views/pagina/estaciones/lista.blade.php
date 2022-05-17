@@ -1,7 +1,11 @@
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
-
+    @if (session()->has('msj'))
+    <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
+    @else
+    <div class="alert alert-damage" role="alert"> </div>
+    @endif
 @section('content_header')
 @stop
 
@@ -26,11 +30,8 @@
         </thead>
         <tbody>
           
-          @foreach ($estaciones as $estacion  )
+          @foreach ($estaciones as $estacion)
           @php
-/*           $color_tabla = "table-success";
-          $color_tabla = "table-warning";
-          $color_tabla = "table-danger"; */
             //  Relacionando datos de entidad, roveedor y estatus
             $entidad = isset(($estacion->entidades)->nombre) ? (($estacion->entidades)->nombre) : "Sin Entidad";
             $proveedor = isset(($estacion->proveedores)->nombre) ? (($estacion->proveedores)->nombre) : "Sin Proveedor";
@@ -60,7 +61,7 @@
             <td>{{$estacion->comentarios}}</td>
             <td>{{$pago}}</td>
             <td>
-              <a href="#" class="btn btn-success">Mas detalles</a>
+              <a href=" editar-estacion/{{ $estacion->id }}" class="btn btn-success">Mas detalles</a>
             </td>
           </tr>
   

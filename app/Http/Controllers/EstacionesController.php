@@ -111,23 +111,49 @@ class EstacionesController extends Controller
         $estaciones->proveedor = $request->proveedor;
         $estaciones->estatus = $request->estatus;
         $estaciones->comentarios = $request->comentarios;
+        $estaciones->referencia = $request->referencia;
 
-        return ($estaciones);
-        // $estaciones->save();
-/*         if ($estaciones->save()) return back()->with('msj', "Los datos se guardado correctamente!");
-        else return back(); */
+        $estaciones->save();
+        if ($estaciones->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        else return back();
     }
         // return redirect('lista-entidades');    }
 
     public function edit($id)
     {
-        //
+                // Buscando las opciones disponibles para editar 
+        $ciudades = cat_ciudad::all();
+        $entidades = cat_entidad::all();
+        $estatus = cat_estatus::all();
+        $proveedores = cat_proveedores::all();
+
+        $estacion = Estaciones::find($id); //Buscando los nombres relacionados  de la estacion
+        
+        //Mandando los datos al formulario
+        return view ('pagina.estaciones.edit') 
+        ->with('estacion', $estacion)
+        ->with('ciudades', $ciudades)
+        ->with('estatus', $estatus)
+        ->with('entidades', $entidades)
+        ->with('proveedores', $proveedores);
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+        $estacion = Estaciones::find($id); 
+        $estacion->ciudad = $request->ciudad;
+        $estacion->entidad = $request->entidad;
+        $estacion->grupo = $request->grupo;
+        $estacion->latitud = $request->latitud;
+        $estacion->longitud = $request->longitud;
+        $estacion->proveedor = $request->proveedor;
+        $estacion->estatus = $request->estatus;
+        $estacion->comentarios = $request->comentarios;
+        $estacion->referencia = $request->referencia;
+
+        if ($estacion->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        else return back();    
     }
 
     public function destroy($id)
