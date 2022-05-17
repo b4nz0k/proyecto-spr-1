@@ -38,11 +38,18 @@
                 $contrato = ($contratoss)->where('id_estacion', '==',$estacion->id)->first();
                 $contrato = isset($contrato->id) ? ($contrato->id) : 'Sin Contrato' ;
                 $pago =($pagoss)->where('contrato','==',  ($contrato))->first();
+                $pago_estatus = isset($pago->status) ?  ($pago->status) : 5;
                 $pago = isset($pago->fecha_pago) ?  ($pago->fecha_pago) : "No hay pago registrado";
+                    if ($pago_estatus == 1 ) { $color_tabla = "table-success"; }
+                    else if ($pago_estatus == 2 ) { $color_tabla = "table-warning"; }
+                    else if ($pago_estatus == 3 ) { $color_tabla = "table-danger"; }
+                    else if ($pago_estatus == 4 ) { $color_tabla = "table-active"; }
+                    else if ($pago_estatus == 5 ) { $color_tabla = "table-active"; }
+
                 // $id_pagos = $pagos->find($id_proveedor)->monto;
 
           @endphp
-          <tr>
+          <tr class="{{$color_tabla}}">
             <td>{{ ($estacion->ciudades)->nombre }}</td>
             <td>{{  ($entidad) }}</td>
             <td>{{$estacion->grupo}}</td>
