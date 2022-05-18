@@ -10,7 +10,10 @@ use App\Models\cat_entidad;
 use App\Models\cat_estatus;
 use App\Models\cat_proveedores;
 use App\Models\Contratos;
+use App\Models\Comentarios;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
 use SebastianBergmann\Diff\Diff;
 
 class EstacionesController extends Controller
@@ -32,15 +35,6 @@ class EstacionesController extends Controller
             if ($diff_corte < 10 ) { $mensaje = 2; }    
             if ($diff_pago > 30) { $mensaje =3; }
 
-
-        
-/*         if ($fecha_pago->format('Y-m-d') < $date_hoy->format('Y-m-d')) {  $mensaje = 1;
-                    if ($date_hoy->format('Y-m-d') > $fecha_corte->format('Y-m-d')) { $mensaje = 1;
-                        if ($diff_corte < 10 ) { $mensaje = 2; }                  } 
-                    if ($diff_pago > 25) { $mensaje =3; }
-              
-            }
-        else {$mensaje = 4;} */
         } else {$mensaje = 4;}
         return ($mensaje);
     } 
@@ -138,10 +132,31 @@ class EstacionesController extends Controller
         ->with('proveedores', $proveedores);
     }
 
+    public function historial($id)
+    {
+        // $historial = Comentarios::select('id', 'comentario' ,'updated_at')->get();
+        $estacionid = $id;
+        $historial = DB::table('historial_estaciones')
+                        ->select('id','estacion', 'comentario', 'updated_at')
+                        ->orderby('id')
+                        ->where('estacion','=', $id)
+                        ->get();
+
+        return view('pagina.estaciones.historial')
+        ->with('estacionid', $estacionid)
+        ->with('historial', $historial);
+    }
 
     public function update(Request $request, $id)
     {
         $estacion = Estaciones::find($id); 
+            //Agregar comentarios
+            $comentario = new Comentarios();
+            $comentario->estacion = $id;
+            $comentario->comentario = $estacion->comentarios;
+            $comentario->save();
+
+        //Actualizar los datos
         $estacion->ciudad = $request->ciudad;
         $estacion->entidad = $request->entidad;
         $estacion->grupo = $request->grupo;

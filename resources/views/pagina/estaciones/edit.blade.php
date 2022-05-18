@@ -14,6 +14,7 @@
       @csrf
       <h1>Editar Estacion</h1>
         
+      <a href="/historial-estacion/{{$estacion->id}}" class="btn btn-primary">Ver Historial</a><hr>
 
       <label for="">Ciudad</label>
       <select class="form-select" aria-label="Default select example" name="ciudad">
@@ -46,7 +47,7 @@
 
       <label for="">Proveedor</label>
       <select class="form-select" aria-label="Default select example" name="proveedor">
-        <option selected>Proveedor</option>
+        <option value="0" selected>Proveedor</option>
 
          @foreach ($proveedores as $proveedor )
                 @php

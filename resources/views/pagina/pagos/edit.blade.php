@@ -17,9 +17,9 @@
      @csrf
     <h1>Actualizar Pago</h1>
     <label for="">Fecha de solicitud</label>
-    <input class="form-control" type="date" value="{{$pagos->fecha_solicitud}}" name="fecha_solicitud">
+    <input class="form-control" type="date" value="{{$pagos->fecha_solicitud}}" name="fecha_solicitud" min="2018-01-01" max="2024-06-1">
     <label for="">Fecha de pago</label>
-    <input class="form-control" type="date" value="{{$pagos->fecha_pago}}" name="fecha_pago">
+    <input class="form-control" type="date" value="{{$pagos->fecha_pago}}" name="fecha_pago" min="2018-01-01" max="2024-06-1">
     <label for="">Numero de recibo defactura</label>
     <input class="form-control" type="text" value="{{$pagos->num_recibo_factura}}" name="num_recibo_factura"> 
     <label for="">Contrato</label>

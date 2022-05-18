@@ -29,7 +29,7 @@
 
       {{-- <input class="form-control" type="number" value="{{$contratos->proveedor}}" name="proveedor"> --}}
       <label for="">Fecha de inicio</label>
-      <input class="form-control" type="date" value="{{$contratos->fecha_inicio}}" name="fecha_inicio">
+      <input class="form-control" type="date" value="{{$contratos->fecha_inicio}}" name="fecha_inicio" min="2018-01-01" max="2024-06-1">
       <label for="">Contrato</label>
       <input class="form-control" type="text" value="{{$contratos->num_contrato}}" name="num_contrato">
       <label for="">Fecha de corte</label>

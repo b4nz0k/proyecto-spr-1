@@ -15,9 +15,9 @@
         @csrf
         <h1>Registrar Pago</h1>
         <label for="">Fecha de solicitud</label>
-        <input class="form-control" type="date" name="fecha_solicitud">
+        <input class="form-control" type="date" name="fecha_solicitud" min="2018-01-01" max="2024-06-1">
         <label for="">Fecha de pago</label>
-        <input class="form-control" type="date" placeholder="Fecha de Pago" name="fecha_pago">
+        <input class="form-control" type="date" placeholder="Fecha de Pago" name="fecha_pago" min="2018-01-01" max="2024-06-1">
         <label for="">Numero de recibo defactura</label>
         <input class="form-control" type="text" placeholder="Numero de recibo defactura" name="num_recibo_factura"> 
         <label for="">Periodo de Pago</label>

@@ -28,7 +28,7 @@
       </select>
 
       <label for="">Fecha de inicio</label>
-      <input class="form-control" type="date" placeholder="Fecha de inicio" name="fecha_inicio">
+      <input class="form-control" type="date" placeholder="Fecha de inicio" name="fecha_inicio" min="2018-01-01" max="2024-06-1">
       <label for="">Contrato</label>
       <input class="form-control" type="text" placeholder="Nombre del Contrato" name="num_contrato">
       <label for="">Dia de corte</label>
