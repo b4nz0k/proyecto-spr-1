@@ -31,11 +31,14 @@ class EstacionesController extends Controller
         $mensaje =null;
 
         if ($fecha_corte->format('Y-m-d') > $fecha_pago->format('Y-m-d')) {
-            $mensaje = 1;
-            if ($diff_corte < 10 ) { $mensaje = 2; }    
-            if ($diff_pago > 30) { $mensaje =3; }
+            $mensaje = "al corriente";  // 1 todo bien
+            if ($diff_corte < 10 ) { $mensaje ="a 10 dias de vencerr"; // 2; 
+            }    
+            if ($diff_pago > 30) { $mensaje ="Pago Vencido"; //3; // 
+            }
 
-        } else {$mensaje = 4;}
+        } 
+        else {$mensaje = 4;}
         return ($mensaje);
     } 
 
@@ -56,10 +59,18 @@ class EstacionesController extends Controller
             # code...
         } */
         // return $fecha;
+        $hoy = date('2022/05/18');
+        $fecha = date('2022/03/05');
+        $dia_corte=25;
+        $calcular_vencido = EstacionesController::fechas($fecha,$dia_corte);
+
+
+        return ('Hoy: '.$hoy .'<br>Fecha: '. $fecha. '<br>Corte: '. $dia_corte . '<br>Status:' . $calcular_vencido);
         return view('pagina.estaciones.lista')
         ->with('estaciones', $estaciones)
         ->with('contratoss', $contratoss)
         ->with('pagoss', $pagoss);
+
     }
     public static function atualizar_fechas() { // actualizar los estatus de los pagos
         $contratos = Contratos::all();
