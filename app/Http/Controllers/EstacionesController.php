@@ -23,23 +23,19 @@ class EstacionesController extends Controller
 
     public function fechas($dateget, $dia_corte) {
         $carbon = new Carbon();
-        $date_hoy = $carbon->now(); // 
-        $fecha_corte = $carbon::create($date_hoy->year,$date_hoy->month, $dia_corte, null);
+        $date_hoy = ($carbon->now()); // 
+        $fecha_corte = $carbon::create($date_hoy->year,$date_hoy->month, $dia_corte);
         $fecha_pago = $carbon::create($dateget);
-        $diff_corte = $date_hoy->diffInDays($fecha_corte); // entre el dia de corte y hoy
+        $diff_corte = $fecha_corte->diffInDays($date_hoy); // entre el dia de corte y hoy
         $diff_pago = $fecha_pago->diffInDays($fecha_corte); // Entre el dia del ultimo pago y el
         $mensaje =null;
 
-        if ($fecha_corte->format('Y-m-d') > $fecha_pago->format('Y-m-d')) {
-            $mensaje = "al corriente";  // 1 todo bien
-            if ($diff_corte < 10 ) { $mensaje ="a 10 dias de vencerr"; // 2; 
-            }    
-            if ($diff_pago > 30) { $mensaje ="Pago Vencido"; //3; // 
-            }
-
-        } 
-        else {$mensaje = 4;}
+        if ($diff_pago < 31) { $mensaje = 1;
+            if ($diff_corte > 0 && $diff_corte < 10 && $diff_pago > 20 ) { $mensaje =2;     }
+        }
+        else {$mensaje = 3;}
         return ($mensaje);
+        // return ($mensaje .'<br>Hoy : '. $date_hoy  .'<br>Dia de corte: ' . $fecha_corte .'<br>Dif Corte: ' . $diff_corte .'<br> Dif Pago: '. $diff_pago);
     } 
 
     public function index()
@@ -57,22 +53,24 @@ class EstacionesController extends Controller
                 "contrato_id"=>$contratos->id
             ));
             # code...
-        } */
+ 
         // return $fecha;
-        $hoy = date('2022/05/18');
-        $fecha = date('2022/03/05');
-        $dia_corte=25;
+        $hoy = date('2022/05/19');
+        $fecha = date('2022/4/30');
+        $dia_corte=21;
         $calcular_vencido = EstacionesController::fechas($fecha,$dia_corte);
+        return ('<br>Fecha pago: '. $fecha. '<br>Corte: '. $dia_corte . '<br>Status:' . $calcular_vencido);
+       } */
 
 
-        return ('Hoy: '.$hoy .'<br>Fecha: '. $fecha. '<br>Corte: '. $dia_corte . '<br>Status:' . $calcular_vencido);
         return view('pagina.estaciones.lista')
         ->with('estaciones', $estaciones)
         ->with('contratoss', $contratoss)
         ->with('pagoss', $pagoss);
 
     }
-    public static function atualizar_fechas() { // actualizar los estatus de los pagos
+    public static function actualizar() { // actualizar los estatus de los pagos
+
         $contratos = Contratos::all();
         $pagoss = Pagos::all('id', 'status', 'contrato', 'fecha_pago');
         foreach ($pagoss as $pago) {   //Cada una de los datos de la tabla en la columna status
@@ -82,8 +80,12 @@ class EstacionesController extends Controller
             //devolvemos el estatus
             $estatusnew = EstacionesController::fechas($pago->fecha_pago , $dia_corte );
             $pago->status = $estatusnew;
+
             $pago->save();
-            // echo "pago id = ". $pago->id . ", contrato ". $pago->contrato . ", num Corte del contrato = ". $dia_corte . ", Fecha ult Pago:". $pago->fecha_pago . ", Estatus: ". $estatusnew ."<br>" ;
+
+            return redirect('/principal');
+        
+            // echo "pago id = ". $pago->id . ", contrato ". $pago->contrato . ", num Corte del contrato = ". $dia_corte . ", Fecha ult Pago:". $pago->fecha_pago .', Estatus old: ' . $estatusold. ", Estatus: ". $estatusnew ."<br>" ;
         }
     }
     public function alta () {
