@@ -8,6 +8,7 @@
 @stop
 
 @section('content')
+<div class="container-md bg-white col-10 p-5 shadow">
 
     <h1>Historial de la estacion</h1><hr>
 
@@ -20,5 +21,5 @@
           </div><hr>
 
           @endforeach
-
+</div>
 @stop

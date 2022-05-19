@@ -8,12 +8,13 @@
 @stop
 
 @section('content')
+<div class="container-md bg-white col-12 p-1 shadow">
 
     <h1>Estaciones</h1>
     <p>Proximamente un mapa....</p>
     <p>Mientras una lista</p>
-    <a href="{{route('Estaciones.alta')}}" class="btn btn-primary">Crear Nuevo</a>
-    <a href="{{route('Estaciones.actualizar')}}" class="btn btn-primary">Actualizar Estatus</a>
+    <a href="{{route('Estaciones.alta')}}" class="btn btn-light">Crear Nuevo</a>
+    <a href="{{route('Estaciones.actualizar')}}" class="btn btn-light">Actualizar Estatus</a>
 
     <table id="contratos" class="table table-striped mt-4 table-bordered shadow-lg" style="width:100%">
         <thead>
@@ -73,5 +74,5 @@
 
 
 
-      
+</div>
 @stop

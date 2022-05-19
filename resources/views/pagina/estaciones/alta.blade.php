@@ -8,6 +8,8 @@
     <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
   @endif
 @section('content')
+<div class="container-md bg-white col-10 p-5 shadow">
+
     <form action="{{route('Estaciones.store')}}" method="post" class="row g-3">
       @csrf
       <h1>Registrar Estacion</h1>
@@ -123,5 +125,5 @@
       </div>
             
         </form>
-
+</div>
 @stop
