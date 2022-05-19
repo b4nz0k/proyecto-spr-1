@@ -44,6 +44,7 @@ Route::controller(EstacionesController::class)-> group(function() {
     Route::get('eliminar-estacion/{id}', 'destroy')->name('Estaciones.destroy'); // funcion de editar-pago
     Route::get('historial-estacion/{id}', 'historial')->name('Estaciones.historial'); // Vemos el historial de la
     Route::get('/actualizar', 'actualizar')->name('Estaciones.actualizar'); // Vemos el historial de la
+    Route::get('/pagar-estacon/{id}', 'pagar')->name('Estaciones.pagar'); // Pagando la estacion en directo
     
 });
 

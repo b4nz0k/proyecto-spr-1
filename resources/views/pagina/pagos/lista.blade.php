@@ -12,7 +12,7 @@
  <div class="container-md bg-white col-12 p-1 shadow">
 
     <h1>Lista de Pagos</h1>
-    <a href="{{route('Pagos.alta')}}" class="btn btn-primary">Crear Nuevo</a>
+    <a href="{{route('Pagos.alta')}}" class="btn btn-light">Crear Nuevo</a>
 
     <table id="contratos" class="table table-striped mt-4 table-bordered shadow-lg" style="width:100%">
       <thead>
