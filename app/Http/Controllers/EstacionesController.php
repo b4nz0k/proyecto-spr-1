@@ -80,7 +80,6 @@ class EstacionesController extends Controller
             //devolvemos el estatus
             $estatusnew = EstacionesController::fechas($pago->fecha_pago , $dia_corte );
             $pago->status = $estatusnew;
-
             $pago->save();
 
             return redirect('/principal');
@@ -186,6 +185,8 @@ class EstacionesController extends Controller
 
     public function destroy($id)
     {
-        //
+        $estacion = cat_estatus::find($id);
+        if ($estacion->delete()) return back()->with('msj', "Los datos se eliminaron correctamente!");
+        else return back();
     }
 }

@@ -3,8 +3,6 @@
 @section('title', 'Dashboard')
     @if (session()->has('msj'))
     <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
-    @else
-    <div class="alert alert-damage" role="alert"> </div>
     @endif
 @section('content_header')
 @stop
@@ -63,7 +61,8 @@
             <td>{{$estacion->comentarios}}</td>
             <td>{{$pago}}</td>
             <td>
-              <a href=" editar-estacion/{{ $estacion->id }}" class="btn btn-success">Mas detalles</a>
+              <a href=" editar-estacion/{{ $estacion->id }}" class="btn btn-warning">Editar</a>
+              <a href=" pagar-estacion/{{ $estacion->id }}" class="btn btn-primary">Pagar</a>
             </td>
           </tr>
   

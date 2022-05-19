@@ -6,10 +6,10 @@
 @stop
     @if (session()->has('msj'))
     <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
-    @else
-    <div class="alert alert-damage" role="alert"> </div>
     @endif
 @section('content')
+<div class="container-md bg-white col-12 p-5 shadow">
+
 <h1>Lista de Proveedores</h1>
 <a href="{{route('Proveedores.alta')}}" class="btn btn-primary">Crear Nuevo</a>
 
@@ -67,7 +67,7 @@
 
       </tbody>
     </table>
-
+</div>
 
 @stop
 

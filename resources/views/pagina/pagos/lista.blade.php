@@ -7,10 +7,9 @@
  @stop
     @if (session()->has('msj'))
     <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
-    @else
-    <div class="alert alert-damage" role="alert"> </div>
     @endif
  @section('content')
+ <div class="container-md bg-white col-12 p-1 shadow">
 
     <h1>Lista de Pagos</h1>
     <a href="{{route('Pagos.alta')}}" class="btn btn-primary">Crear Nuevo</a>
@@ -78,7 +77,7 @@
 
       </tbody>
     </table>
-
+ </div>
 @stop
 
 

@@ -6,24 +6,26 @@
 @stop
     @if (session()->has('msj'))
     <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
-    @else
-    <div class="alert alert-damage" role="alert"> Error al guardar los datos</div>
     @endif
 @section('content')
-    <form action="{{route('Ciudad.store')}}" method="post" class="col-5">
+<div class="container-md bg-white col-10 p-5 shadow">
+    <form action="{{route('Ciudad.store')}}" method="post" class="row gap-3">
       @csrf
       <h1>Registrar Ciudad</h1>
-
-      <label for="">Ciudad</label>
-      <input class="form-control" type="text" placeholder="Nombre de Ciudad" name="nombre">
-
-      <a href="{{route('Ciudad.lista')}}" class="btn btn-primary mb-2">Atras</a>
-
+      <div class="mb-3 col-md-4 col-auto">
+        <label for="">Ciudad</label>
+        <input class="form-control" type="text" placeholder="Nombre de Ciudad" name="nombre">
+      </div>
+      <hr>
+      <div class="col-3">
+        <a href="{{route('Ciudad.lista')}}" class="btn btn-primary mb-2 col-9"><-- Atras</a>
+      </div>
+      <div class="col-3">
               {{-- Empiza el boton modal --}}
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+              <button type="button" class="btn btn-primary col-9" data-toggle="modal" data-target="#exampleModalCenter">
                 Registrar
             </button>
-      
+      </div>
       <!-- Modal -->
       <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -46,5 +48,5 @@
       </div>
             
         </form>
-
+</div>
 @stop

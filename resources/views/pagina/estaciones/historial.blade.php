@@ -3,8 +3,6 @@
 @section('title', 'Dashboard')
     @if (session()->has('msj'))
     <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
-    @else
-    <div class="alert alert-damage" role="alert"> </div>
     @endif
 @section('content_header')
 @stop

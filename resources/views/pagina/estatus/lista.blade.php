@@ -6,15 +6,14 @@
 @stop
     @if (session()->has('msj'))
     <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
-    @else
-    <div class="alert alert-damage" role="alert"> </div>
     @endif
 @section('content')
-<h1>Lista de Estatus</h1>
-<a href="{{route('Estatus.alta')}}" class="btn btn-primary">Crear Nuevo</a>
 
-<div class="container-md ml-2 col-6" >
-    <table id="contratos" class="table table-striped mt-4 table-bordered shadow-l style="width:100%">
+<div class="container-md bg-white col-10 p-5 shadow">
+  <h1>Lista de Estatus</h1>
+<a  href="{{route('Estatus.alta')}}" class="btn btn-light">Crear Nuevo</a>
+
+  <table id="contratos" class="table table-striped mt-4 table-bordered shadow-l style="width:100%">
       <thead>
        <tr>
           <th scope="col">ID</th>

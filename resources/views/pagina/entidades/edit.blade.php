@@ -6,32 +6,40 @@
 @stop
     @if (session()->has('msj'))
     <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
-    @else
-    <div class="alert alert-damage" role="alert"> Error al guardar los datos</div>
     @endif
 @section('content')
 <div class="container-md ml-2 col-6" >
 
-<form action="/editar-entidad/{{$entidades->id}}" method="POST">
+<form action="/editar-entidad/{{$entidades->id}}" method="POST" class="row g-3">
     @csrf
       <h1>Editar Entidad</h1>
-      <label for="">Nombre</label>
-      <input class="form-control" type="text" value="{{$entidades->nombre}}" name="nombre">
-      <label for="">Abreviacion</label>
-      <input class="form-control" type="text" value="{{$entidades->abrev}}" name="abrev">
-      <label for="">Poblacion Total</label>
-      <input class="form-control" type="text" value="{{$entidades->pob_tot}}" name="pob_tot">
-      <label for="">Poblacion Masc</label>
-      <input class="form-control" type="text" value="{{$entidades->pob_masc}}" name="pob_masc">
-      <label for="">Poblacion Fem</label>
-      <input class="form-control" type="text" value="{{$entidades->pob_fem}}" name="pob_fem">
-
+      <div class="mb-3 col-md-4 col-auto">
+          <label for="">Nombre</label>
+          <input class="form-control" type="text" value="{{$entidades->nombre}}" name="nombre">
+      </div>
+      <div class="mb-3 col-md-4 col-auto">
+          <label for="">Abreviacion</label>
+          <input class="form-control" type="text" value="{{$entidades->abrev}}" name="abrev">
+      </div>
+      <div class="mb-3 col-md-4 col-auto">
+          <label for="">Poblacion Total</label>
+          <input class="form-control" type="text" value="{{$entidades->pob_tot}}" name="pob_tot">
+      </div>
+      <div class="mb-3 col-md-4 col-auto">
+          <label for="">Poblacion Masc</label>
+          <input class="form-control" type="text" value="{{$entidades->pob_masc}}" name="pob_masc">
+      </div>
+      <div class="mb-3 col-md-4 col-auto">
+          <label for="">Poblacion Fem</label>
+          <input class="form-control" type="text" value="{{$entidades->pob_fem}}" name="pob_fem">
+      </div>
       
-      
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+      <hr>
+      <div class="col-4"></div>
+    <button type="button" class="btn btn-primary col-7" data-toggle="modal" data-target="#exampleModalCenter">
       Actualizar
   </button>
-
+    </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered" role="document">

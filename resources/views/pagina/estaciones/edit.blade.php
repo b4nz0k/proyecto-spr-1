@@ -6,8 +6,6 @@
 @stop
   @if (session()->has('msj'))
     <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
-    @else
-    <div class="alert alert-damage" role="alert"> </div>
   @endif
 @section('content')
     <form action="/editar-estacion/{{$estacion->id}}" method="post">
@@ -15,6 +13,7 @@
       <h1>Editar Estacion</h1>
         
       <a href="/historial-estacion/{{$estacion->id}}" class="btn btn-primary">Ver Historial</a><hr>
+      <button href="/eliminar-estacion/{{$estacion->id}}" class="btn btn-danger">Eliminar</button><hr>
 
       <label for="">Ciudad</label>
       <select class="form-select" aria-label="Default select example" name="ciudad">
