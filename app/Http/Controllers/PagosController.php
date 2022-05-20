@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pagos;
 use App\Models\cat_proveedores;
 use App\Models\Contratos;
+use App\Models\Estaciones;
 
 class PagosController extends Controller
 {
@@ -80,4 +81,19 @@ class PagosController extends Controller
         // $pago->delete();
         // return redirect('lista-pagos');
     }
+    public function pagar($id) {
+        // Buscando las opciones disponibles para Pagar 
+        $contratos = Contratos::all();
+        $pagoss = Pagos::all();
+        $estacion = Estaciones::find($id);
+        $contrato = ($contratos)->where('id_estacion', '==',$estacion->id)->first();
+        $contrato = isset($contrato->id) ? ($contrato->id) : 'Sin Contrato' ;
+        $pago_id =($pagoss)->where('contrato','==',  ($contrato))->first();
+
+        $proveedores = cat_proveedores::all();
+        return view ('pagina.pagos.pago')
+        ->with('proveedores', $proveedores)
+        ->with('contratos', $contratos)
+        ->with('pago', $pago_id->id);
+}
 }

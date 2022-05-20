@@ -247,7 +247,7 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Mapa',
+            'text'        => 'Estaciones',
             'url'         => 'principal',
             'icon'        => 'far fa-thin fa-map',
             'label'       => 4,

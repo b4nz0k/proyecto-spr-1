@@ -64,8 +64,8 @@
                     Estas seguro que Desea eliminar?
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <a href="/eliminar-pago/{{$pago->id }}"  class="btn btn-danger">Borrar</a>
+                    <button type="button" class="btn btn-secondary col-6" data-dismiss="modal">Cerrar</button>
+                    <a href="/eliminar-pago/{{$pago->id }}"  class="btn btn-danger col-6">Borrar</a>
                   </div>
                 </div>
               </div>

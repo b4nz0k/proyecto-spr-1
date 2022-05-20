@@ -18,7 +18,24 @@ use SebastianBergmann\Diff\Diff;
 
 class EstacionesController extends Controller
 {
-    
+    public static function actualizar() { // actualizar los estatus de los pagos
+
+        $contratos = Contratos::all();
+        $pagoss = Pagos::all('id', 'status', 'contrato', 'fecha_pago');
+        foreach ($pagoss as $pago) {   //Cada una de los datos de la tabla en la columna status
+            //obtener el numero de corte 
+            $dia_corte = ($contratos->find($pago->contrato))->dia_corte_mensual;
+            $estatusold = $pago->status; //status antiguo
+            //devolvemos el estatus
+            $estatusnew = EstacionesController::fechas($pago->fecha_pago , $dia_corte );
+            $pago->status = $estatusnew;
+            $pago->save();
+
+            return redirect('/principal');
+        
+            // echo "pago id = ". $pago->id . ", contrato ". $pago->contrato . ", num Corte del contrato = ". $dia_corte . ", Fecha ult Pago:". $pago->fecha_pago .', Estatus old: ' . $estatusold. ", Estatus: ". $estatusnew ."<br>" ;
+        }
+    }
 
 
     public function fechas($dateget, $dia_corte) {
@@ -69,24 +86,7 @@ class EstacionesController extends Controller
         ->with('pagoss', $pagoss);
 
     }
-    public static function actualizar() { // actualizar los estatus de los pagos
 
-        $contratos = Contratos::all();
-        $pagoss = Pagos::all('id', 'status', 'contrato', 'fecha_pago');
-        foreach ($pagoss as $pago) {   //Cada una de los datos de la tabla en la columna status
-            //obtener el numero de corte 
-            $dia_corte = ($contratos->find($pago->contrato))->dia_corte_mensual;
-            $estatusold = $pago->status; //status antiguo
-            //devolvemos el estatus
-            $estatusnew = EstacionesController::fechas($pago->fecha_pago , $dia_corte );
-            $pago->status = $estatusnew;
-            $pago->save();
-
-            return redirect('/principal');
-        
-            // echo "pago id = ". $pago->id . ", contrato ". $pago->contrato . ", num Corte del contrato = ". $dia_corte . ", Fecha ult Pago:". $pago->fecha_pago .', Estatus old: ' . $estatusold. ", Estatus: ". $estatusnew ."<br>" ;
-        }
-    }
     public function alta () {
 
         $estaciones = Estaciones::all();
@@ -189,4 +189,5 @@ class EstacionesController extends Controller
         if ($estacion->delete()) return back()->with('msj', "Los datos se eliminaron correctamente!");
         else return back();
     }
+
 }

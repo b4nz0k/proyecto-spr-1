@@ -62,8 +62,8 @@
             <td>{{$estacion->comentarios}}</td>
             <td>{{$pago}}</td>
             <td>
-              <a href=" editar-estacion/{{ $estacion->id }}" class="btn btn-warning">Editar</a>
-              <a href=" pagar-estacion/{{ $estacion->id }}" class="btn btn-primary">Pagar</a>
+              <a href="/editar-estacion/{{ $estacion->id }}" class="btn btn-warning col-12">Editar</a>
+              <a href="/pagar-estacion/{{ $estacion->id }}" class="btn btn-primary col-12">Subir Pago</a>
             </td>
           </tr>
   

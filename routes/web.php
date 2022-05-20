@@ -44,7 +44,6 @@ Route::controller(EstacionesController::class)-> group(function() {
     Route::get('eliminar-estacion/{id}', 'destroy')->name('Estaciones.destroy'); // funcion de editar-pago
     Route::get('historial-estacion/{id}', 'historial')->name('Estaciones.historial'); // Vemos el historial de la
     Route::get('/actualizar', 'actualizar')->name('Estaciones.actualizar'); // Vemos el historial de la
-    Route::get('/pagar-estacon/{id}', 'pagar')->name('Estaciones.pagar'); // Pagando la estacion en directo
     
 });
 
@@ -57,6 +56,8 @@ Route::controller(PagosController::class)->group(function() {
     Route::get('editar-pago/{id}', 'edit')->name('Pagos.edit'); // Vista de formulario editar-pago
     Route::post('editar-pago/{id}', 'update')->name('Pagos.update'); // funcion de editar-pago
     Route::get('eliminar-pago/{id}', 'destroy')->name('Pagos.destroy'); // funcion de editar-pago
+    Route::get('pagar-estacion/{id}', 'pagar')->name('Pagos.pagar'); // Pagando la estacion en directo
+
 });
 
  //Rutas del Crud Contratos

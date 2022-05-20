@@ -43,9 +43,9 @@
           <td>{{$contrato->num_contrato}}</td>
           <td>$ {{$contrato->importe_mensual}}</td>
           <td>
-            <a href="/editar-contrato/{{ $contrato->id }}" class="btn btn-primary">Editar</a>
+            <a href="/editar-contrato/{{ $contrato->id }}" class="btn btn-primary col-12">Editar</a>
 
-            <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModalCenter">
+            <button type="button" class="btn btn-danger col-12" data-toggle="modal" data-target="#exampleModalCenter">
               Eliminar
             </button>
             
@@ -64,7 +64,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <a href="/eliminar-contrato/{{$contrato->id }}"  class="btn btn-danger">Eliminar</a>
+                    <a href="/eliminar-contrato/{{$contrato->id }}"  class="btn btn-danger ">Eliminar</a>
                   </div>
                 </div>
               </div>
