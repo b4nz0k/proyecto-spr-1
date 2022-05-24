@@ -135,7 +135,7 @@ class EstacionesController extends Controller
         // $historial = Comentarios::select('id', 'comentario' ,'updated_at')->get();
         $estacionid = $id;
         $historial = DB::table('historial_estaciones')
-                        ->select('id','estacion', 'comentario', 'updated_at')
+                        ->select('id','estacion', 'comentario', 'proveedor', 'estatus', 'updated_at')
                         ->orderby('id')
                         ->where('estacion','=', $id)
                         ->get();
@@ -152,6 +152,8 @@ class EstacionesController extends Controller
             $comentario = new Comentarios();
             $comentario->estacion = $id;
             $comentario->comentario = $estacion->comentarios;
+            $comentario->estatus = $estacion->estatus;
+            $comentario->proveedor = $estacion->proveedor;
             $comentario->save();
 
         //Actualizar los datos

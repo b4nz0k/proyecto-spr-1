@@ -16,13 +16,14 @@ class PagosController extends Controller
 
     public function alta()
     {
-        
+
         $contratos = Contratos::all();
         $proveedores = cat_proveedores::all();
 
         return view ('pagina.pagos.alta')
         ->with('proveedores', $proveedores)
         ->with('contratos', $contratos);
+
     }
     
     public function lista()
@@ -95,7 +96,7 @@ class PagosController extends Controller
         $contrato = isset($contrato->id) ? ($contrato->id) : 'Sin Contrato' ;
         if ($pago =($pagoss)->where('contrato','==',  ($contrato))->first())
         { $pago_id = $pago->id; }
-        return ($pago_id);
+
         $proveedores = cat_proveedores::all();
         return view ('pagina.pagos.pago')
         ->with('proveedores', $proveedores)

@@ -52,7 +52,7 @@
         
                 @foreach ($contratos as $contrato )
                 @php
-                $activo = ($contrato->id == $pago) ? (' selected="selected" ') : ('');
+                $activo = ($contrato->id == $contrato_id) ? (' selected="selected" ') : ('');
 
                 @endphp
                 <option {{$activo}} value="{{($contrato->id) }}">{{($contrato->num_contrato)}} </option>
