@@ -63,6 +63,11 @@
             <label for="">Monto</label>
             <input class="form-control" type="text" placeholder="$" name="monto">
         </div><hr>
+        <div class="mb-3 col-md-4 col-auto">
+            {{ csrf_field() }}
+            <label for="">Archivo</label>
+            <input type="file" class="form-control-file" name="urlpdf">
+          </div><hr>
         {{-- Empiza el boton modal --}}
         <div class="col-4">
             <a href="{{route('Pagos.lista')}}" class="btn btn-primary col-9"><- Atras</a>

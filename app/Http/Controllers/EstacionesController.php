@@ -67,7 +67,6 @@ class EstacionesController extends Controller
         $estaciones = ContratosController::agregar_campo($estaciones, "pagos", "pago_ultimo", "fecha_pago", "contrato", 'contrato_id');
         $estaciones = ContratosController::agregar_campo($estaciones, "pagos", "status", "status", "contrato", 'contrato_id');
 
-
         return view('pagina.estaciones.lista')
         ->with('estaciones', $estaciones);
 

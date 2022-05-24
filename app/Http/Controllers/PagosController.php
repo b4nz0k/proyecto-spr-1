@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Models\Pagos;
 use App\Models\cat_proveedores;
@@ -39,6 +40,14 @@ class PagosController extends Controller
 
     public function store(request $request)
     {
+        if ($request->hasFile('urlpdf')) {
+            $file=$request->file('urlpdf');
+            $nombre = $file->getClientOriginalName();
+            Storage::disk('local')->put($nombre,  File::get($file));
+            
+             return ($nombre);
+        }
+
         $pagos = new Pagos();
         $pagos->fecha_solicitud = $request->fecha_solicitud;
         $pagos->fecha_pago = $request->fecha_pago;
@@ -46,6 +55,7 @@ class PagosController extends Controller
         $pagos->num_recibo_factura = $request->num_recibo_factura;
         $pagos->contrato = $request->contrato;
         $pagos->monto = $request->monto;
+        return ($pagos);
         if ($pagos->save()) return back()->with('msj', "Los datos se guardado correctamente!");
         else return back();
 
@@ -103,5 +113,8 @@ class PagosController extends Controller
         ->with('contratos', $contratos)
         ->with('contrato_id', $contrato)
         ->with('pago', $pago_id);
-}
+    }
+    public function subirArchivo(Request $request) {
+
+    }
 }
