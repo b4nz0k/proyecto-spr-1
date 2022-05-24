@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Models\Contratos;
@@ -9,13 +9,41 @@ use App\Models\Estaciones;
 use App\Models\cat_proveedores;
 use App\Models\cat_entidad;
 use App\Models\cat_ciudad;
+use PHPUnit\TextUI\XmlConfiguration\Constant;
+
 class contratosController extends Controller
 {
 
     public function __construct() {
         $this->middleware('auth');
     }
+    
+    public function agregar_campo (Object $arreglo, $tabla , $objeto_nuevo, $select = "nombre", $wheree = "id", $wheree_end ='id') {
+        foreach ($arreglo as $ar) {
+            $item = DB::table($tabla)
+            ->select($select)
+            ->where($wheree, $ar->$wheree_end)
+            ->value($select);
 
+            $arreglo->find($ar->id)->$objeto_nuevo = $item;
+        }
+            return ($arreglo);
+    }
+
+    public function lista()
+    {            
+
+        $contratos = Contratos::all();
+        $contratos = contratosController::agregar_campo($contratos, "cat_proveedores", "proveedor_nombre");
+        $contratos = contratosController::agregar_campo($contratos, "estaciones", "ciudad_id", "ciudad", "id", 'id_estacion');
+        $contratos = contratosController::agregar_campo($contratos, "estaciones", "entidad_id", "entidad", "id", 'id_estacion');
+        $contratos = contratosController::agregar_campo($contratos, "cat_ciudad", "ciudad_nombre", "nombre", "id", 'ciudad_id');
+        $contratos = contratosController::agregar_campo($contratos, "cat_entidad", "entidad_nombre", "nombre", "id", 'entidad_id');
+
+        
+        return view ('pagina.contratos.lista')
+        ->with('contratos', $contratos);
+    }
     public function alta()
     {        
         $estaciones = Estaciones::all();
@@ -33,20 +61,7 @@ class contratosController extends Controller
             ->with('estaciones', $estaciones);
     }
 
-    public function lista()
-    {
-        $estaciones = Estaciones::all('id', 'grupo', 'ciudad', 'entidad');
-                
-        $ciudades = cat_ciudad::all('id', 'nombre');
-        $entidades = cat_entidad::all('id', 'nombre');
-        $contratos = Contratos::all();
 
-        return view ('pagina.contratos.lista')
-        ->with('estaciones', $estaciones)
-        ->with('ciudades', $ciudades)
-        ->with('entidades', $entidades )
-        ->with('contratos', $contratos);
-    }
 
     public function store(Request $request)
     {

@@ -29,16 +29,11 @@
       </thead>
       <tbody>
         @foreach ($contratos as $contrato )
-        @php
-            $proveedor = isset(($contrato->proveedores_tabla)->nombre) ? (($contrato->proveedores_tabla)->nombre) : "nulo";
-            $ciudad = isset(($estaciones->find($contrato->id_estacion)->ciudades)->nombre) ? (($estaciones->find($contrato->id_estacion)->ciudades)->nombre) : "nulo";
-            $entidad = isset(($estaciones->find($contrato->id_estacion)->entidades)->nombre) ? (($estaciones->find($contrato->id_estacion)->entidades)->nombre) : "nulo";
-        @endphp
         <tr>
           <td>{{ $contrato->id }}</td>
-          <td>{{ ($ciudad) }} / {{ ($entidad) }}</td>
+          <td>{{ $contrato->ciudad_nombre }} / {{ $contrato->entidad_nombre }}</td>
           <td>{{$contrato->fecha_inicio}}</td>
-          <td>{{ ($proveedor) }}</td>
+          <td>{{ $contrato->proveedor_nombre }}</td>
           <td>{{$contrato->dia_corte_mensual}}</td>
           <td>{{$contrato->num_contrato}}</td>
           <td>$ {{$contrato->importe_mensual}}</td>

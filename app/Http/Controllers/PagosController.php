@@ -19,6 +19,7 @@ class PagosController extends Controller
         
         $contratos = Contratos::all();
         $proveedores = cat_proveedores::all();
+
         return view ('pagina.pagos.alta')
         ->with('proveedores', $proveedores)
         ->with('contratos', $contratos);
@@ -26,8 +27,11 @@ class PagosController extends Controller
     
     public function lista()
     {
-
-        $pagos = Pagos::all();
+         $pagos = Pagos::all();
+        foreach ($pagos as $pago) {
+           $contrato = Contratos::find($pago->id)->num_contrato;
+           $pagos->find($pago->id)->contrato_nombre = $contrato;
+        }
         return view ('pagina.pagos.lista')
         ->with('pagos', $pagos);
     }
@@ -86,14 +90,17 @@ class PagosController extends Controller
         $contratos = Contratos::all();
         $pagoss = Pagos::all();
         $estacion = Estaciones::find($id);
+        $pago_id = null;
         $contrato = ($contratos)->where('id_estacion', '==',$estacion->id)->first();
         $contrato = isset($contrato->id) ? ($contrato->id) : 'Sin Contrato' ;
-        $pago_id =($pagoss)->where('contrato','==',  ($contrato))->first();
-
+        if ($pago =($pagoss)->where('contrato','==',  ($contrato))->first())
+        { $pago_id = $pago->id; }
+        return ($pago_id);
         $proveedores = cat_proveedores::all();
         return view ('pagina.pagos.pago')
         ->with('proveedores', $proveedores)
         ->with('contratos', $contratos)
-        ->with('pago', $pago_id->id);
+        ->with('contrato_id', $contrato)
+        ->with('pago', $pago_id);
 }
 }

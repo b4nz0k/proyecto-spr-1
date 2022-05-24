@@ -2,18 +2,18 @@
 
 return [
 
-    'main_navigation'               => 'MAIN NAVIGATION',
+    'main_navigation'               => 'NAVEGACION',
     'blog'                          => 'Blog',
-    'pages'                         => 'Pages',
-    'account_settings'              => 'ACCOUNT SETTINGS',
-    'profile'                       => 'Profile',
-    'change_password'               => 'Change Password',
+    'pages'                         => 'Paginas',
+    'account_settings'              => 'CONFIGURACION',
+    'profile'                       => 'Perfil',
+    'change_password'               => 'Cambiar Clave',
     'multilevel'                    => 'Multi Level',
-    'level_one'                     => 'Level 1',
-    'level_two'                     => 'Level 2',
-    'level_three'                   => 'Level 3',
+    'level_one'                     => 'Nivel 1',
+    'level_two'                     => 'Nivel 2',
+    'level_three'                   => 'Nivel 3',
     'labels'                        => 'LABELS',
     'important'                     => 'Important',
-    'warning'                       => 'Warning',
-    'information'                   => 'Information',
+    'warning'                       => 'Advertencia',
+    'information'                   => 'Informacion',
 ];

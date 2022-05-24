@@ -50,13 +50,12 @@
             <select class="form-select" aria-label="Default select example" name="contrato">
                 <option selected>Selecciona un Contrato</option>
         
-                @foreach ($contratos as $contratos )
+                @foreach ($contratos as $contrato )
                 @php
-                $activo = ($contratos->id == $pago) ? (' selected="selected" ') : ('');
+                $activo = ($contrato->id == $pago) ? (' selected="selected" ') : ('');
 
-                $ciudad = isset(($contratos->ciudades)->nombre) ? (($contratos->ciudades)->nombre) : "";
                 @endphp
-                <option {{$activo}} value="{{($contratos->id) }}">{{($contratos->num_contrato)}} | {{($ciudad)}}</option>
+                <option {{$activo}} value="{{($contrato->id) }}">{{($contrato->num_contrato)}} </option>
                 @endforeach
             </select>
             {{-- <input class="form-control" type="text" placeholder="Contrato" name="contrato"> --}}
@@ -67,7 +66,7 @@
         </div><hr>
         {{-- Empiza el boton modal --}}
         <div class="col-4">
-            <a href="{{route('Pagos.lista')}}" class="btn btn-primary col-9"><- Atras</a>
+            <a href="{{route('Estaciones.index')}}" class="btn btn-primary col-9"><- Atras</a>
         </div>
         <div class="col-4">
             <button type="button" class="btn btn-primary col-9" data-toggle="modal" data-target="#exampleModalCenter">

@@ -29,18 +29,12 @@
       </thead>
       <tbody>
         @foreach ($pagos as $pago )
-
         <tr>
           <td>{{$pago->id}}</td>
           <td>{{$pago->fecha_solicitud}}</td>
           <td>{{$pago->fecha_pago}}</td>
           <td>{{$pago->num_recibo_factura}}</td>
-
-          @php
-          $contrato = isset(($pago->contratos_tabla)->num_contrato) ? (($pago->contratos_tabla)->num_contrato) : "nulo";
-          @endphp
-                
-          <td>{{($contrato)}}</td>
+          <td>{{($pago->contrato_nombre)}}</td>
           <td>{{$pago->periodo_pago}}</td>
           <td>{{$pago->monto}}</td>
           <td>

@@ -33,34 +33,26 @@
           
           @foreach ($estaciones as $estacion)
           @php
-            //  Relacionando datos de entidad, roveedor y estatus
-            $entidad = isset(($estacion->entidades)->nombre) ? (($estacion->entidades)->nombre) : "Sin Entidad";
-            $proveedor = isset(($estacion->proveedores)->nombre) ? (($estacion->proveedores)->nombre) : "Sin Proveedor";
-            $estatus = isset(($estacion->estatus_tabla)->estatus) ? (($estacion->estatus_tabla)->estatus) : "Sin Estatus";
-            // Buscando el contrato y el pago correpondiente
-                $contrato = ($contratoss)->where('id_estacion', '==',$estacion->id)->first();
-                $contrato = isset($contrato->id) ? ($contrato->id) : 'Sin Contrato' ;
-            //Buscando el pago correspondiente
-                $pago =($pagoss)->where('contrato','==',  ($contrato))->first();
-                $pago_estatus = isset($pago->status) ?  ($pago->status) : 5;
-                $pago = isset($pago->fecha_pago) ?  ($pago->fecha_pago) : "No hay pago registrado";
-                    if ($pago_estatus == 1 ) { $color_tabla = "table-success"; }
-                    else if ($pago_estatus == 2 ) { $color_tabla = "table-warning"; }
-                    else if ($pago_estatus == 3 ) { $color_tabla = "table-danger"; }
-                    else if ($pago_estatus == 4 ) { $color_tabla = "table-active"; }
-                    else if ($pago_estatus == 5 ) { $color_tabla = "table-active"; }
+          $color_tabla = null;
+            //Pintando los campos de las tablas
+                $pago = isset($estacion->pago_ultimo)  ?  ($estacion->pago_ultimo) : "No hay pago registrado";
+                    if ($estacion->status == 1 ) { $color_tabla = "table-success"; }
+                    else if ($estacion->status == 2 ) { $color_tabla = "table-warning"; }
+                    else if ($estacion->status == 3 ) { $color_tabla = "table-danger"; }
+                    else if ($estacion->status == 4 ) { $color_tabla = "table-active"; }
+                    else { $color_tabla = "table-active"; }
 
                 // $id_pagos = $pagos->find($id_proveedor)->monto;
 
           @endphp
           <tr class="{{$color_tabla}}">
-            <td>{{ ($estacion->ciudades)->nombre }}</td>
-            <td>{{  ($entidad) }}</td>
+            <td>{{$estacion->ciudad_nombre }}</td>
+            <td>{{$estacion->entidad_nombre }}</td>
             <td>{{$estacion->grupo}}</td>
-            <td>{{ ($proveedor) }} </td>
-            <td>{{ ($estatus) }}</td>
+            <td>{{$estacion->proveedor_nombre }} </td>
+            <td>{{$estacion->status }}</td>
             <td>{{$estacion->comentarios}}</td>
-            <td>{{$pago}}</td>
+            <td>{{$estacion->pago_ultimo}}</td>
             <td>
               <a href="/editar-estacion/{{ $estacion->id }}" class="btn btn-warning col-12">Editar</a>
               <a href="/pagar-estacion/{{ $estacion->id }}" class="btn btn-primary col-12">Subir Pago</a>
