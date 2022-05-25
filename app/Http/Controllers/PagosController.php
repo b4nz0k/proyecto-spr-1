@@ -46,8 +46,8 @@ class PagosController extends Controller
     public function store(Request $request)
     {
 
-        $path = $request->file('archivo')->store(
-            'public/'.$request->user()->id);
+        $path = $request->file('archivo')->storeAs(
+            'public/'.$request->user()->id, date('Ymdhm'). $request->id);
             
             // return ('Archivo : <a href="'. PagosController::descargar($path) . '">Archivo_pdf</a>');
             
@@ -79,8 +79,8 @@ class PagosController extends Controller
     {
           $pago = Pagos::find($id);
 
-                $path = $request->file('archivo')->store(
-                'public/'.$request->user()->id . $id);
+                $path = $request->file('archivo')->storeAs(
+                    'public/'.$request->user()->id,$request->id . '.pdf');
 
         $pago->fecha_solicitud = $request->fecha_solicitud;
         $pago->fecha_pago = $request->fecha_pago;
