@@ -36,7 +36,7 @@ class EntidadController extends Controller
 
         // return ($entidad);
         // $entidad->save();
-        if ($entidad->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        if ($entidad->save()) return redirect("/lista-entidad")->with('msj', "Los datos se guardado correctamente!");
         else return back();
 
         // return redirect('lista-entidades');
@@ -58,7 +58,7 @@ class EntidadController extends Controller
         $entidades->pob_masc = $request->pob_masc;
         $entidades->pob_fem = $request->pob_fem;
         // $entidades->save();
-        if ($entidades->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        if ($entidades->save()) return redirect("/lista-entidad")->with('msj', "Los datos se guardado correctamente!");
         else return back();
 
         // return redirect('lista-entidades');
@@ -68,7 +68,7 @@ class EntidadController extends Controller
     {
         $entidad = cat_entidad::find($id);
         // $entidad->delete();
-        if ($entidad->delete()) return back()->with('msj', "Los datos se eliminaron correctamente!");
+        if ($entidad->delete()) return redirect("/lista-entidad")->with('msj', "Los datos se eliminaron correctamente!");
         else return back();
 
         // return redirect('lista-entidades');   

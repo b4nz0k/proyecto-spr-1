@@ -11,7 +11,7 @@
 
 {{-- <form action="{{route('Pagos.update')}}/{{$pagos->id}}" method="POST">
  --}}
- <form action="/editar-pago/{{$pagos->id}}" method="POST" class="row g-3">
+ <form action="/editar-pago/{{$pagos->id}}" method="POST" class="row g-3" enctype="multipart/form-data">
      @csrf
     <h1>Actualizar Pago</h1>
     <div class="mb-3 col-md-4 col-auto">
@@ -38,6 +38,12 @@
         <label for="">Monto</label>
         <input class="form-control" type="text" value="{{$pagos->monto}}" name="monto">
     </div>
+    
+    <div class="mb-3 col-md-4 col-auto">
+      <label class="form-label" for="customFile">Archivo de pago</label>
+      <input type="file" class="form-control" id="customFile" name="archivo" />
+    </div><hr>
+
     <div class="col-4">
         <a href="{{route('Pagos.lista')}}" class="btn btn-primary col-9"><--Atras</a>
     </div>

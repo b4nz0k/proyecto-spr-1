@@ -31,7 +31,7 @@ class CiudadController extends Controller
         $ciudad->nombre = $request->nombre;
         // return ($proveedores);
         // $ciudad->save();
-        if ($ciudad->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        if ($ciudad->save()) return redirect("/lista-ciudades")->with('msj', "Los datos se guardado correctamente!");
         else return back();
         // return redirect('lista-ciudades');
     }
@@ -48,7 +48,7 @@ class CiudadController extends Controller
         $ciudades = cat_ciudad::find($id);
         $ciudades->nombre = $request->nombre;
         // $ciudades->save();
-        if ($ciudades->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        if ($ciudades->save()) return redirect("/lista-ciudades")->with('msj', "Los datos se guardado correctamente!");
         else return back();
         // return redirect('lista-ciudades');
     }
@@ -57,7 +57,7 @@ class CiudadController extends Controller
     {
         $ciudad = cat_ciudad::find($id);
         // $ciudad->delete();
-        if ($ciudad->delete()) return back()->with('msj', "Los datos se eliminaron correctamente!");
+        if ($ciudad->delete()) return redirect("/lista-ciudades")->with('msj', "Los datos se eliminaron correctamente!");
         else return back();
 
         // return redirect('lista-ciudades');   

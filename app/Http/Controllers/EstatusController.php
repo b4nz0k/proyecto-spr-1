@@ -27,7 +27,7 @@ class EstatusController extends Controller
         $estatus = new cat_estatus();
         $estatus->estatus = $request->estatus;
         // $estatus->save();
-        if ($estatus->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        if ($estatus->save()) return redirect("/lista-estatus")->with('msj', "Los datos se guardado correctamente!");
         else return back();
 
         // return redirect('lista-estatus');
@@ -46,7 +46,7 @@ class EstatusController extends Controller
         $estatus = cat_estatus::find($id);
         $estatus->estatus = $request->estatus;
         // $estatus->save();
-        if ($estatus->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        if ($estatus->save()) return redirect("/lista-estatus")->with('msj', "Los datos se guardado correctamente!");
         else return back();
 
         // return redirect('lista-estatus');
@@ -55,7 +55,7 @@ class EstatusController extends Controller
     public function destroy($id)
     {
         $estatus = cat_estatus::find($id);
-        if ($estatus->delete()) return back()->with('msj', "Los datos se eliminaron correctamente!");
+        if ($estatus->delete()) return redirect("/lista-estatus")->with('msj', "Los datos se eliminaron correctamente!");
         else return back();
 /*      $estatus->delete();
         return redirect('lista-estatus');     */

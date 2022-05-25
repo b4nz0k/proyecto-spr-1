@@ -30,7 +30,7 @@ class ProveedoresController extends Controller
         $proveedore->nombre = $request->nombre;
         $proveedore->razon_social = $request->razon_social;
         $proveedore->tipo = $request->tipo;
-        if ($proveedore->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        if ($proveedore->save()) return redirect("/lista-proveedores")->with('msj', "Los datos se guardado correctamente!");
         else return back();
     }
 
@@ -47,7 +47,7 @@ class ProveedoresController extends Controller
         $proveedores->nombre = $request->nombre;
         $proveedores->razon_social = $request->razon_social;
         $proveedores->tipo = $request->tipo;
-        if ($proveedores->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        if ($proveedores->save()) return redirect("/lista-proveedores")->with('msj', "Los datos se guardado correctamente!");
         else return back();
 
     }
@@ -55,7 +55,7 @@ class ProveedoresController extends Controller
     public function destroy($id)
     {
         $proveedor = cat_proveedores::find($id);
-        if ($proveedor->delete()) return back()->with('msj', "Los datos se eliminaron correctamente!");
+        if ($proveedor->delete()) return redirect("/lista-proveedores")->with('msj', "Los datos se eliminaron correctamente!");
         else return back();
   
     }

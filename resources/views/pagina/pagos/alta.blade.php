@@ -10,7 +10,7 @@
 @section('content')
 <div class="container-md bg-white col-10 p-5 shadow">
 
-    <form action="{{route('Pagos.store')}}" method="POST" class="row g-3">
+    <form action="{{route('Pagos.store')}}" method="POST" class="row g-3" enctype="multipart/form-data">
         
         @csrf
         <h1>Registrar Pago</h1>
@@ -62,12 +62,13 @@
         <div class="mb-3 col-md-4 col-auto">
             <label for="">Monto</label>
             <input class="form-control" type="text" placeholder="$" name="monto">
-        </div><hr>
-        <div class="mb-3 col-md-4 col-auto">
+        </div>
             {{ csrf_field() }}
-            <label for="">Archivo</label>
-            <input type="file" class="form-control-file" name="urlpdf">
-          </div><hr>
+            <div class="mb-3 col-md-4 col-auto">
+              <label class="form-label" for="customFile">Archivo de pago</label>
+              <input type="file" class="form-control" id="customFile" name="archivo" />
+            </div>
+          <hr>
         {{-- Empiza el boton modal --}}
         <div class="col-4">
             <a href="{{route('Pagos.lista')}}" class="btn btn-primary col-9"><- Atras</a>

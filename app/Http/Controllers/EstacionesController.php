@@ -105,7 +105,8 @@ class EstacionesController extends Controller
         $estaciones->referencia = $request->referencia;
 
         $estaciones->save();
-        if ($estaciones->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        
+        if ($estaciones->save()) return redirect("/principal")->with('msj', "Los datos se guardado correctamente!");
         else return back();
     }
         // return redirect('lista-entidades');    }
@@ -165,15 +166,15 @@ class EstacionesController extends Controller
         $estacion->estatus = $request->estatus;
         $estacion->comentarios = $request->comentarios;
         $estacion->referencia = $request->referencia;
-
-        if ($estacion->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        
+        if ($estacion->save()) return redirect("/principal")->with('msj', "Los datos se guardado correctamente!");
         else return back();    
     }
 
     public function destroy($id)
     {
         $estacion = cat_estatus::find($id);
-        if ($estacion->delete()) return back()->with('msj', "Los datos se eliminaron correctamente!");
+        if ($estacion->delete()) return redirect("/principal")->with('msj', "Los datos se eliminaron correctamente!");
         else return back();
     }
 

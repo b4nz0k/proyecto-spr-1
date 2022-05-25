@@ -75,7 +75,7 @@ class contratosController extends Controller
         $contratos->importe_mensual = $request->importe_mensual;
         // return ($contratos);
 
-        if ($contratos->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        if ($contratos->save()) return redirect("/lista-contratos")->with('msj', "Los datos se guardado correctamente!");
         else return back();
                 // return redirect('lista-contratos');
     }
@@ -107,7 +107,7 @@ class contratosController extends Controller
         $contratos->id_estacion = $request->id_estacion;
         $contratos->importe_mensual = $request->importe_mensual;
         
-        if ($contratos->save()) return back()->with('msj', "Los datos se guardado correctamente!");
+        if ($contratos->save()) return redirect("/lista-contratos")->with('msj', "Los datos se guardado correctamente!");
         else return back();
         
         // return ("Prueba de POST");
@@ -118,7 +118,7 @@ class contratosController extends Controller
     {
         $contrato = Contratos::find($id);
         // $contrato->delete();
-        if ($contrato->delete()) return back()->with('msj', "Los datos se eliminaron correctamente!");
+        if ($contrato->delete()) return redirect("/lista-contratos")->with('msj', "Los datos se eliminaron correctamente!");
         else return back();
     }
 }
