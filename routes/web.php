@@ -58,7 +58,7 @@ Route::controller(PagosController::class)->group(function() {
     Route::post('editar-pago/{id}', 'update')->name('Pagos.update'); // funcion de editar-pago
     Route::get('eliminar-pago/{id}', 'destroy')->name('Pagos.destroy'); // funcion de editar-pago
     Route::get('pagar-estacion/{id}', 'pagar')->name('Pagos.pagar'); // Pagando la estacion en directo
-    Route::get('descargar-pago/{id}', 'descargar')->name('Pagos.descargar'); // Ruta para descargar archibos
+    Route::get('visualizar-pago/{id}', 'verpdf')->name('Pagos.verpdf'); // Ruta para descargar archibos
 
 });
 

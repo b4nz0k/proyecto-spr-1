@@ -1,17 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
-use Illuminate\Http\Request;
+
+use Dompdf\Dompdf;
 use App\Models\Pagos;
-use App\Models\cat_proveedores;
 use App\Models\Contratos;
 use App\Models\Estaciones;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Models\cat_proveedores;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class PagosController extends Controller
 {
-    public function __construct()    {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -21,36 +25,42 @@ class PagosController extends Controller
         $contratos = Contratos::all();
         $proveedores = cat_proveedores::all();
 
-        return view ('pagina.pagos.alta')
-        ->with('proveedores', $proveedores)
-        ->with('contratos', $contratos);
-
+        return view('pagina.pagos.alta')
+            ->with('proveedores', $proveedores)
+            ->with('contratos', $contratos);
     }
-    
+
     public function lista()
     {
-         $pagos = Pagos::all();
+        $pagos = Pagos::all();
         foreach ($pagos as $pago) {
-           $contrato = (Contratos::find($pago->contrato)->num_contrato);
-           $pagos->find($pago->id)->contrato_nombre = $contrato;
+            $contrato = (Contratos::find($pago->contrato)->num_contrato);
+            $pagos->find($pago->id)->contrato_nombre = $contrato;
         }
-        return view ('pagina.pagos.lista')
-        ->with('pagos', $pagos);
+        return view('pagina.pagos.lista')
+            ->with('pagos', $pagos);
     }
 
-    public function descargar($id) {
+    public function verpdf($id)
+    {
         $pagos = Pagos::find($id);
-        return (Storage::download($pagos->archivo));
+        $pdf = Storage::disk('public')->get($pagos->id . '.pdf');
+        $response = new Response($pdf, 200);
+        $response->header('Content-Type', 'application/pdf');
+        return $response;
+
     }
 
     public function store(Request $request)
     {
 
         $path = $request->file('archivo')->storeAs(
-            'public/'.$request->user()->id, date('Ymdhm'). $request->id);
-            
-            // return ('Archivo : <a href="'. PagosController::descargar($path) . '">Archivo_pdf</a>');
-            
+            'public/',
+            $request->id . '.pdf'
+        );
+
+        // return ('Archivo : <a href="'. PagosController::descargar($path) . '">Archivo_pdf</a>');
+
         $pagos = new Pagos();
         $pagos->fecha_solicitud = $request->fecha_solicitud;
         $pagos->fecha_pago = $request->fecha_pago;
@@ -60,7 +70,7 @@ class PagosController extends Controller
         $pagos->monto = $request->monto;
         $pagos->archivo = $path;
         $msj = "Los datos se guardado correctamente!";
-        if ($pagos->save()) return redirect("/lista-pagos")->with('msj', $msj );
+        if ($pagos->save()) return redirect("/lista-pagos")->with('msj', $msj);
         else return back();
 
         // $pagos->save();
@@ -71,16 +81,18 @@ class PagosController extends Controller
     public function edit($id)
     {
         $pagos = Pagos::find($id);
-        return view ('pagina.pagos.edit')
-        ->with('pagos', $pagos);
+        return view('pagina.pagos.edit')
+            ->with('pagos', $pagos);
     }
 
     public function update(Request $request, $id)
     {
-          $pago = Pagos::find($id);
+        $pago = Pagos::find($id);
 
-                $path = $request->file('archivo')->storeAs(
-                    'public/'.$request->user()->id,$request->id . '.pdf');
+        $path = $request->file('archivo')->storeAs(
+            'public/',
+            $request->id . '.pdf'
+        );
 
         $pago->fecha_solicitud = $request->fecha_solicitud;
         $pago->fecha_pago = $request->fecha_pago;
@@ -104,25 +116,27 @@ class PagosController extends Controller
         // $pago->delete();
         // return redirect('lista-pagos');
     }
-    public function pagar($id) {
+    public function pagar($id)
+    {
         // Buscando las opciones disponibles para Pagar 
         $contratos = Contratos::all();
         $pagoss = Pagos::all();
         $estacion = Estaciones::find($id);
         $pago_id = null;
-        $contrato = ($contratos)->where('id_estacion', '==',$estacion->id)->first();
-        $contrato = isset($contrato->id) ? ($contrato->id) : 'Sin Contrato' ;
-        if ($pago =($pagoss)->where('contrato','==',  ($contrato))->first())
-        { $pago_id = $pago->id; }
+        $contrato = ($contratos)->where('id_estacion', '==', $estacion->id)->first();
+        $contrato = isset($contrato->id) ? ($contrato->id) : 'Sin Contrato';
+        if ($pago = ($pagoss)->where('contrato', '==', ($contrato))->first()) {
+            $pago_id = $pago->id;
+        }
 
         $proveedores = cat_proveedores::all();
-        return view ('pagina.pagos.pago')
-        ->with('proveedores', $proveedores)
-        ->with('contratos', $contratos)
-        ->with('contrato_id', $contrato)
-        ->with('pago', $pago_id);
+        return view('pagina.pagos.pago')
+            ->with('proveedores', $proveedores)
+            ->with('contratos', $contratos)
+            ->with('contrato_id', $contrato)
+            ->with('pago', $pago_id);
     }
-    public function subirArchivo(Request $request) {
-
+    public function subirArchivo(Request $request)
+    {
     }
 }
