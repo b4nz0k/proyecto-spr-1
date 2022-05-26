@@ -31,28 +31,30 @@ class EstacionesController extends Controller
             $pago->status = $estatusnew;
             $pago->save();
 
-            return redirect('/principal');
         
-            // echo "pago id = ". $pago->id . ", contrato ". $pago->contrato . ", num Corte del contrato = ". $dia_corte . ", Fecha ult Pago:". $pago->fecha_pago .', Estatus old: ' . $estatusold. ", Estatus: ". $estatusnew ."<br>" ;
+            // echo "\n\n\npago id = ". $pago->id . ", contrato ". $pago->contrato . ", num Corte del contrato = ". $dia_corte . ", Fecha ult Pago:". $pago->fecha_pago .', Estatus old: ' . $estatusold. ", Estatus: ". $estatusnew . '<br>'  ;
         }
+        return redirect('principal');
+
     }
 
 
     public function fechas($dateget, $dia_corte) {
         $carbon = new Carbon();
-        $date_hoy = ($carbon->now()); // 
-        $fecha_corte = $carbon::create($date_hoy->year,$date_hoy->month, $dia_corte);
-        $fecha_pago = $carbon::create($dateget);
+        $date_hoy = ($carbon->now()); // Se crea la fcha de hoy
+        $fecha_corte = $carbon::create($date_hoy->year,$date_hoy->month, $dia_corte); //Fecha del corte del mes persente
+        $fecha_pago = $carbon::create($dateget); // Fecha del ultimo pago
         $diff_corte = $fecha_corte->diffInDays($date_hoy); // entre el dia de corte y hoy
-        $diff_pago = $fecha_pago->diffInDays($fecha_corte); // Entre el dia del ultimo pago y el
-        $mensaje =null;
+        $diff_pago = $fecha_pago->diffInDays($date_hoy); // Entre el dia del ultimo pago y el
+        $mensaje =null; //Declarando la variable a definir
 
         if ($diff_pago < 31) { $mensaje = 1;
             if ($diff_corte > 0 && $diff_corte < 10 && $diff_pago > 20 ) { $mensaje =2;     }
         }
         else {$mensaje = 3;}
+        //  echo  ('<br><br>Hoy : '. $date_hoy  .'<br>Dia de corte: ' . $fecha_corte .'<br>Dif Corte: ' . $diff_corte .'<br> Dif Pago: '. $diff_pago);
         return ($mensaje);
-        // return ($mensaje .'<br>Hoy : '. $date_hoy  .'<br>Dia de corte: ' . $fecha_corte .'<br>Dif Corte: ' . $diff_corte .'<br> Dif Pago: '. $diff_pago);
+
     } 
 
     public function index()
@@ -86,9 +88,11 @@ class EstacionesController extends Controller
         $estaciones = ContratosController::agregar_campo($estaciones, "pagos", "pago_ultimo", "fecha_pago", "contrato", 'contrato_id');
         $estaciones = ContratosController::agregar_campo($estaciones, "pagos", "status", "status", "contrato", 'contrato_id');
 
-        if ($id == 1) ($estaciones = $estaciones->where( 'id',1));
+        if ($id == 1) ($estaciones = $estaciones->where( 'status', 1));
+
         elseif ($id == 2) ($estaciones = $estaciones->where('status', 2 ));
         elseif ($id == 3) ($estaciones = $estaciones->where('status', 3 ));
+
         return view('pagina.estaciones.lista')
         ->with('estaciones', $estaciones);
 
