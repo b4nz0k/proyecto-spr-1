@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Models\cat_proveedores;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ContratosController;
+use JeroenNoten\LaravelAdminLte\View\Components\Form\Select;
 
 class EstacionesController extends Controller
 {
@@ -71,6 +72,28 @@ class EstacionesController extends Controller
         ->with('estaciones', $estaciones);
 
     }
+
+    public function estatus($id)
+    {
+
+        $estaciones = Estaciones::all(); 
+        $estaciones = ContratosController::agregar_campo($estaciones, "cat_ciudad", "ciudad_nombre", "nombre", "id", 'ciudad');
+        $estaciones = ContratosController::agregar_campo($estaciones, "cat_entidad", "entidad_nombre", "nombre", "id", 'entidad');
+        $estaciones = ContratosController::agregar_campo($estaciones, "cat_proveedores", "proveedor_id", "id", "id", 'proveedor');
+        $estaciones = ContratosController::agregar_campo($estaciones, "cat_proveedores", "proveedor_nombre", "nombre", "id", 'proveedor');
+        $estaciones = ContratosController::agregar_campo($estaciones, "contratos", "contrato_numero", "num_contrato", "id", 'proveedor_id');
+        $estaciones = ContratosController::agregar_campo($estaciones, "contratos", "contrato_id", "id", "id", 'proveedor_id');
+        $estaciones = ContratosController::agregar_campo($estaciones, "pagos", "pago_ultimo", "fecha_pago", "contrato", 'contrato_id');
+        $estaciones = ContratosController::agregar_campo($estaciones, "pagos", "status", "status", "contrato", 'contrato_id');
+
+        if ($id == 1) ($estaciones = $estaciones->where( 'id',1));
+        elseif ($id == 2) ($estaciones = $estaciones->where('status', 2 ));
+        elseif ($id == 3) ($estaciones = $estaciones->where('status', 3 ));
+        return view('pagina.estaciones.lista')
+        ->with('estaciones', $estaciones);
+
+    }
+
 
     public function alta () {
 

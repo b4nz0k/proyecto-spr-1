@@ -14,7 +14,7 @@ class CiudadController extends Controller
 
     public function alta()
     {
-        return view('pagina.ciudades.alta');
+        return view('pagina.ciudades.alta');/*  */
 
     }
     
@@ -27,6 +27,9 @@ class CiudadController extends Controller
 
     public function store(request $request)
     {
+        if ($request->nombre) {
+
+        }
         $ciudad = new cat_ciudad();
         $ciudad->nombre = $request->nombre;
         // return ($proveedores);

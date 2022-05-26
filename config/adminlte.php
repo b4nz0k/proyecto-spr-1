@@ -300,17 +300,17 @@ return [
         [
             'text'       => 'Vencidos',
             'icon_color' => 'red',
-            'url'        => '#',
+            'url'        => 'lista-estaciones/3',
         ],
         [
             'text'       => 'A Vencer',
             'icon_color' => 'yellow',
-            'url'        => '#',
+            'url'        => 'lista-estaciones/2',
         ],
         [
             'text'       => 'Corriente',
             'icon_color' => 'cyan',
-            'url'        => '#',
+            'url'        => 'lista-estaciones/1',
         ],
     ],
 
