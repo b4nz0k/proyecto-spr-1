@@ -93,6 +93,7 @@
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Referencia de la estacion..." name="referencia"></textarea>
     </div>
     <div class="col-4">
+      {{-- <input id="prodId" name="id" type="hidden" value="{{}}"> --}}
 
       <a href="{{route('Estaciones.index')}}" class="btn btn-primary col-9"><- Atras</a>
     </div>

@@ -32,7 +32,7 @@ class PagosController extends Controller
 
     public function lista()
     {
-        $pagos = Pagos::all();
+        $pagos = Pagos::paginate(10);
         foreach ($pagos as $pago) {
             $contrato = (Contratos::find($pago->contrato)->num_contrato);
             $pagos->find($pago->id)->contrato_nombre = $contrato;
@@ -44,23 +44,40 @@ class PagosController extends Controller
     public function verpdf($id)
     {
         $pagos = Pagos::find($id);
-        $pdf = Storage::disk('public')->get($pagos->id . '.pdf');
+        $pdf = Storage::disk('public')->get('../'.$pagos->archivo);
         $response = new Response($pdf, 200);
         $response->header('Content-Type', 'application/pdf');
-        return $response;
+
+        return $pdf;
 
     }
 
     public function store(Request $request)
-    {
-
-        $path = $request->file('archivo')->storeAs(
-            'public/',
-            $request->id . '.pdf'
-        );
-
-        // return ('Archivo : <a href="'. PagosController::descargar($path) . '">Archivo_pdf</a>');
-
+    {   // Validacion que todos los campos esten seleccionados
+/*         $this->validate($request, [
+            'fecha_solicitud' => 'required',
+            'fecha_pago' => 'required',
+            'periodo_pago' => 'required',
+            'num_recibo_factura' => 'required',
+            'contrato' => 'required',
+            'monto' => 'required',
+            'archivo' => 'required',
+        ],
+        // Segundo array de validacion Mensajes personalizados
+        [
+            'fecha_solicitud' => 'Se requiere el campo de Fecha de Solicitud',
+            'fecha_pago' => 'Se requiere el campo de Fecha de Pago',
+            'periodo_pago' => 'Se requiere el campo de Periodo de Pago',
+            'num_recibo_factura' => 'Se requiere el campo Numero de Factura',
+            'contrato' => 'Se requiere el campo de Contrato',
+            'monto' => 'Se requiere el campo de Monto',
+            'archivo' => 'Se requiere archivo adjunto',
+        ]);
+        if ($v->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($v->errors());
+        } */
+        // The validation passed
         $pagos = new Pagos();
         $pagos->fecha_solicitud = $request->fecha_solicitud;
         $pagos->fecha_pago = $request->fecha_pago;
@@ -68,14 +85,19 @@ class PagosController extends Controller
         $pagos->num_recibo_factura = $request->num_recibo_factura;
         $pagos->contrato = $request->contrato;
         $pagos->monto = $request->monto;
-        $pagos->archivo = $path;
         $msj = "Los datos se guardado correctamente!";
+        $path = $request->file('archivo')->storeAs(
+            'public',
+            $request->file('archivo')->hashName()
+        );
+        $pagos->archivo = $path;
+
+        // return ('Archivo : <a href="'. PagosController::descargar($path) . '">Archivo_pdf</a>');
+
+
         if ($pagos->save()) return redirect("/lista-pagos")->with('msj', $msj);
         else return back();
 
-        // $pagos->save();
-        // return ("Prueba de POST");
-        // return redirect('lista-pagos');
     }
 
     public function edit($id)
@@ -83,12 +105,12 @@ class PagosController extends Controller
         $pagos = Pagos::find($id);
         return view('pagina.pagos.edit')
             ->with('pagos', $pagos);
+        
     }
 
     public function update(Request $request, $id)
     {
         $pago = Pagos::find($id);
-
         $path = $request->file('archivo')->storeAs(
             'public/',
             $request->id . '.pdf'
@@ -100,7 +122,7 @@ class PagosController extends Controller
         $pago->num_recibo_factura = $request->num_recibo_factura;
         $pago->contrato = $request->contrato;
         $pago->monto = $request->monto;
-        $pago->archivo = $path;
+        $pago->archivo = $request->id . '.pdf';
         if ($pago->save()) return redirect("/lista-pagos")->with('msj', "Los datos se guardado correctamente!");
         else return back();
         // $pago->save();

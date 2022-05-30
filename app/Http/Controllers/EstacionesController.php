@@ -14,12 +14,13 @@ use Illuminate\Http\Request;
 use App\Models\cat_proveedores;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ContratosController;
-use JeroenNoten\LaravelAdminLte\View\Components\Form\Select;
 
 class EstacionesController extends Controller
 {
+    public function __construct()    {
+        $this->middleware('auth');
+    }
     public static function actualizar() { // actualizar los estatus de los pagos
-
         $contratos = Contratos::all();
         $pagoss = Pagos::all('id', 'status', 'contrato', 'fecha_pago');
         foreach ($pagoss as $pago) {   //Cada una de los datos de la tabla en la columna status
@@ -56,19 +57,30 @@ class EstacionesController extends Controller
         return ($mensaje);
 
     } 
+    public function agregar_campo (Object $arreglo, $tabla , $objeto_nuevo, $select = "nombre", $wheree = "id", $wheree_end ='id') {
+        foreach ($arreglo as $ar) {
+            $item = DB::table($tabla)
+            ->select($select)
+            ->where($wheree, $ar->$wheree_end)
+            ->value($select);
+
+            $arreglo->find($ar->id)->$objeto_nuevo = $item;
+        }
+            return ($arreglo);
+    }
 
     public function index()
     {
         // return EstacionesController::atualizar_fechas();
         $estaciones = Estaciones::all(); //sE TIENE QUE REVISAR PARA FUTUROS CAMBIOS
-        $estaciones = ContratosController::agregar_campo($estaciones, "cat_ciudad", "ciudad_nombre", "nombre", "id", 'ciudad');
-        $estaciones = ContratosController::agregar_campo($estaciones, "cat_entidad", "entidad_nombre", "nombre", "id", 'entidad');
-        $estaciones = ContratosController::agregar_campo($estaciones, "cat_proveedores", "proveedor_id", "id", "id", 'proveedor');
-        $estaciones = ContratosController::agregar_campo($estaciones, "cat_proveedores", "proveedor_nombre", "nombre", "id", 'proveedor');
-        $estaciones = ContratosController::agregar_campo($estaciones, "contratos", "contrato_numero", "num_contrato", "id", 'proveedor_id');
-        $estaciones = ContratosController::agregar_campo($estaciones, "contratos", "contrato_id", "id", "id", 'proveedor_id');
-        $estaciones = ContratosController::agregar_campo($estaciones, "pagos", "pago_ultimo", "fecha_pago", "contrato", 'contrato_id');
-        $estaciones = ContratosController::agregar_campo($estaciones, "pagos", "status", "status", "contrato", 'contrato_id');
+        $estaciones = EstacionesController::agregar_campo($estaciones, "cat_ciudad", "ciudad_nombre", "nombre", "id", 'ciudad');
+        $estaciones = EstacionesController::agregar_campo($estaciones, "cat_entidad", "entidad_nombre", "nombre", "id", 'entidad');
+        $estaciones = EstacionesController::agregar_campo($estaciones, "cat_proveedores", "proveedor_id", "id", "id", 'proveedor');
+        $estaciones = EstacionesController::agregar_campo($estaciones, "cat_proveedores", "proveedor_nombre", "nombre", "id", 'proveedor');
+        $estaciones = EstacionesController::agregar_campo($estaciones, "contratos", "contrato_numero", "num_contrato", "id", 'proveedor_id');
+        $estaciones = EstacionesController::agregar_campo($estaciones, "contratos", "contrato_id", "id", "id", 'proveedor_id');
+        $estaciones = EstacionesController::agregar_campo($estaciones, "pagos", "pago_ultimo", "fecha_pago", "contrato", 'contrato_id');
+        $estaciones = EstacionesController::agregar_campo($estaciones, "pagos", "status", "status", "contrato", 'contrato_id');
 
         return view('pagina.estaciones.lista')
         ->with('estaciones', $estaciones);
@@ -79,14 +91,14 @@ class EstacionesController extends Controller
     {
 
         $estaciones = Estaciones::all(); 
-        $estaciones = ContratosController::agregar_campo($estaciones, "cat_ciudad", "ciudad_nombre", "nombre", "id", 'ciudad');
-        $estaciones = ContratosController::agregar_campo($estaciones, "cat_entidad", "entidad_nombre", "nombre", "id", 'entidad');
-        $estaciones = ContratosController::agregar_campo($estaciones, "cat_proveedores", "proveedor_id", "id", "id", 'proveedor');
-        $estaciones = ContratosController::agregar_campo($estaciones, "cat_proveedores", "proveedor_nombre", "nombre", "id", 'proveedor');
-        $estaciones = ContratosController::agregar_campo($estaciones, "contratos", "contrato_numero", "num_contrato", "id", 'proveedor_id');
-        $estaciones = ContratosController::agregar_campo($estaciones, "contratos", "contrato_id", "id", "id", 'proveedor_id');
-        $estaciones = ContratosController::agregar_campo($estaciones, "pagos", "pago_ultimo", "fecha_pago", "contrato", 'contrato_id');
-        $estaciones = ContratosController::agregar_campo($estaciones, "pagos", "status", "status", "contrato", 'contrato_id');
+        $estaciones = EstacionesController::agregar_campo($estaciones, "cat_ciudad", "ciudad_nombre", "nombre", "id", 'ciudad');
+        $estaciones = EstacionesController::agregar_campo($estaciones, "cat_entidad", "entidad_nombre", "nombre", "id", 'entidad');
+        $estaciones = EstacionesController::agregar_campo($estaciones, "cat_proveedores", "proveedor_id", "id", "id", 'proveedor');
+        $estaciones = EstacionesController::agregar_campo($estaciones, "cat_proveedores", "proveedor_nombre", "nombre", "id", 'proveedor');
+        $estaciones = EstacionesController::agregar_campo($estaciones, "contratos", "contrato_numero", "num_contrato", "id", 'proveedor_id');
+        $estaciones = EstacionesController::agregar_campo($estaciones, "contratos", "contrato_id", "id", "id", 'proveedor_id');
+        $estaciones = EstacionesController::agregar_campo($estaciones, "pagos", "pago_ultimo", "fecha_pago", "contrato", 'contrato_id');
+        $estaciones = EstacionesController::agregar_campo($estaciones, "pagos", "status", "status", "contrato", 'contrato_id');
 
         if ($id == 1) ($estaciones = $estaciones->where( 'status', 1));
 

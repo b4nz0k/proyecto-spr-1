@@ -12,7 +12,7 @@
 
 <h1>Lista de Contratos</h1>
 
-<a href="{{route('Contratos.alta')}}" class="btn btn-light">Crear Nuevo</a>
+<a href="{{route('Contratos.alta')}}" class="btn btn-light">Crear Nuevo</a><hr>
 
     <table id="contratos" class="table table-striped mt-4 table-bordered shadow-lg align-content-center" style="width:100%">
       <thead>

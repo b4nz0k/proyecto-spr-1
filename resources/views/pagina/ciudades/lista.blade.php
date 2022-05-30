@@ -11,7 +11,7 @@
 
 <div class="container-md bg-white col-12 p-5 shadow">
   <h1>Lista de Ciudades</h1>
-<a href="{{route('Ciudad.alta')}}" class="btn btn-light">Crear Nuevo</a>
+<a href="{{route('Ciudad.alta')}}" class="btn btn-light">Crear Nuevo</a><hr>
 
   <table id="contratos" class="table table-striped mt-4 table-bordered shadow-lg" style="width:100%">
     <thead>

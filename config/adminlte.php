@@ -194,7 +194,7 @@ return [
     'register_url' => 'register',
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
-    'profile_url' => false,
+    'profile_url' => 'user/profile',
 
     /*
     |--------------------------------------------------------------------------
@@ -246,18 +246,25 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        [
-            'text'        => 'Estaciones',
+/*         [
+            'text'        => 'Mapa',
             'url'         => 'principal',
             'icon'        => 'far fa-thin fa-map',
             'label'       => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+            ['header' => 'account_settings'],
         [
             'text' => 'Perfil de Usuario',
             'url'  => 'user/profile',
             'icon' => 'fas fa-fw fa-user',
+        ],*/
+        [
+            'text'        => 'Estaciones',
+            'url'         => 'principal',
+            'icon'        => 'far fa-fw fa-file',
+            // 'label'       => 4,
+            // 'label_color' => 'success',
         ],
         [
             'text' => 'Contratos',
@@ -270,12 +277,7 @@ return [
             "icon" => 'far fa-fw fa-file'
         ],
         [
-            'text' => 'Proveedores',
-            'url'  => 'lista-proveedores',
-            "icon" => 'far fa-fw fa-file'
-        ],
-        [
-            'text'    => 'Ver mas',
+            'text'    => 'Datos Maestros',
             'icon' => 'fas fas fa-book',
             // 'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
@@ -292,6 +294,11 @@ return [
                 [
                     'text' => 'Entidad',
                     'url'  => 'lista-entidades',
+                    "icon" => 'far fa-fw fa-file'
+                ],
+                [
+                    'text' => 'Proveedores',
+                    'url'  => 'lista-proveedores',
                     "icon" => 'far fa-fw fa-file'
                 ],                                               
             ],

@@ -9,7 +9,13 @@
     @endif
 @section('content')
 <div class="container-md bg-white col-10 p-5 shadow">
-
+{{--   @if($errors->has())
+  <div class="alert alert-warning" role="alert">
+     @foreach ($errors->all() as $error)
+        <div>{{ $error }}</div>
+    @endforeach
+    @endif 
+  </br>    --}}
     <form action="{{route('Pagos.store')}}" method="POST" class="row g-3" enctype="multipart/form-data">
         
         @csrf
