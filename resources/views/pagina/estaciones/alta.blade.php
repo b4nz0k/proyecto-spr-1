@@ -3,7 +3,6 @@
 @section('title', 'Alta Estaciones')
 
 @section('content_header')
-@stop
   @if (session()->has('msj'))
     <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
   @endif
