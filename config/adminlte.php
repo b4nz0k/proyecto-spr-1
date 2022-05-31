@@ -49,8 +49,8 @@ return [
     'logo_img' => 'vendor/adminlte/dist/img/logo.jpeg',
     'logo_img_class' => 'img-fluid',
     'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xl',
-    'logo_img_alt' => null,
+    'logo_img_xl_class' => 'brand-image-xl ',
+    'logo_img_alt' => "LogotipoSPR",
 
     /*
     |--------------------------------------------------------------------------

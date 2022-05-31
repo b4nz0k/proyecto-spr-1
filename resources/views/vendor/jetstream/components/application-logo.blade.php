@@ -4,7 +4,7 @@
   <path d="M14.134 45.885A23.914 23.914 0 0024 48c13.255 0 24-10.745 24-24 0-3.516-.756-6.856-2.115-9.866-4.659 15.143-16.608 27.092-31.75 31.751z" fill="#6875F5"/>
 </svg>
  --}}<?xml version="1.0" encoding="UTF-8"?>
-<svg width="398px" height="208px" viewBox="0 0 398 208" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="198px" viewBox="0 0 398 208" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <title>Group 52</title>
   <defs>
       <polygon id="path-1" points="0 208 398 208 398 0 0 0"></polygon>

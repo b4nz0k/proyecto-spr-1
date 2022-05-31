@@ -12,7 +12,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Panel de ontrol') }}</div>
+                <div class="card-header"><h4>{{ __('Panel de Control') }}</h4></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -22,9 +22,9 @@
                     @endif
 
                     <div class="container-fluid py-5">
-                        <h1 class="display-5 fw-bold">  {{ __('Biembenido!') }}  </h1>
+                        <h1 class="display-5 fw-bold">  {{ __('Bienvenido!') }}  </h1>
                         <p class="col-md-8 fs-4">
-                            al sistema de gestión de contenidos, permite crear un entorno de trabajo para la creación 
+                            Al sistema de gestión de contenidos, permite crear un entorno de trabajo para la creación 
                             y administración de contenidos. 
                         </p>
                         <a href="{{route('Estaciones.index')}}" class="btn btn-primary btn-lg" type="button">Registrar Pago</a>
@@ -32,8 +32,7 @@
                     <div class="row align-items-md-stretch">
                         <div class="col-md-6">
                           <div class="h-100 p-5 text-white bg-dark rounded-3">
-                            <h2>Manager CMS</h2>
-                            <p>Permite crear tus contenidos rápidamente. Estos se pueden agregar al sitio web con unos pocos clics para crear.</p>
+                            <h1>=></h1>
                           </div>
                         </div>
                         <div class="col-md-6">

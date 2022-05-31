@@ -1,14 +1,15 @@
+
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Estaciones')
+
+@section('content_header')
+@stop
     @if (session()->has('msj'))
     <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
     @endif
-@section('content_header')
-@stop
-
 @section('content')
-<div class="container-md bg-white col-12 p-1 shadow">
+<div class="container-md bg-white col-12 p-5 shadow">
 
     <h1>Estaciones</h1>
     <a href="{{route('Estaciones.alta')}}" class="bg-white btn btn-primary btn-lg border-3">Crear Nuevo</a>

@@ -8,7 +8,7 @@
     <div class="alert alert-success" role="alert"> {{session('msj')}}</div>
     @endif
 @section('content')
-<div class="container-md bg-white col-12 p-1 shadow">
+<div class="container-md bg-white col-12 p-5 shadow">
 
 <h1>Lista de Contratos</h1>
 

@@ -18,8 +18,11 @@
     {{-- Small brand logo --}}
     <img src="{{ asset(config('adminlte.logo_img', 'vendor/adminlte/dist/img/AdminLTELogo.png')) }}"
          alt="{{ config('adminlte.logo_img_alt', 'AdminLTE') }}"
-         class="{{ config('adminlte.logo_img_class', 'img-fluid') }}"
-         style="opacity:.8">
+         class="{{ config('adminlte.logo_img_class', 'img-fluid mx-auto') }}"
+         style="  max-width: 70%;
+                  justify-content: center;
+                  margin-left:10px  ;
+         ">
 
     {{-- Brand text --}}
     <span class="brand-text font-weight-light {{ config('adminlte.classes_brand_text') }}">

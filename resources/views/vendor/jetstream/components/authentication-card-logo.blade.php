@@ -6,7 +6,7 @@
 </a>
  --}}
  <?xml version="1.0" encoding="UTF-8"?>
-<svg width="398px" height="208px" viewBox="0 0 398 208" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="198px" viewBox="0 0 398 208" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>Group 52</title>
     <defs>
         <polygon id="path-1" points="0 208 398 208 398 0 0 0"></polygon>
