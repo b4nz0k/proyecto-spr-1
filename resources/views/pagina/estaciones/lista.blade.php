@@ -11,8 +11,8 @@
 <div class="container-md bg-white col-12 p-1 shadow">
 
     <h1>Estaciones</h1>
-    <a href="{{route('Estaciones.alta')}}" class="btn btn-light">Crear Nuevo</a>
-    <a href="{{route('Estaciones.actualizar')}}" class="btn btn-light">Actualizar Estatus</a>
+    <a href="{{route('Estaciones.alta')}}" class="bg-white btn btn-primary btn-lg border-3">Crear Nuevo</a>
+    <a href="{{route('Estaciones.actualizar')}}" class="btn btn-warning btn-lg border-3">Actualizar Estatus</a>
     <hr>
 
     <table id="contratos" class="table table-striped mt-4 table-bordered shadow-lg" style="width:100%">
