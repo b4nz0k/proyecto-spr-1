@@ -44,11 +44,11 @@ class PagosController extends Controller
     public function verpdf($id)
     {
         $pagos = Pagos::find($id);
-        $pdf = Storage::disk('public')->get('../'.$pagos->archivo);
+        $pdf = Storage::disk('public')->get($pagos->archivo);
         $response = new Response($pdf, 200);
         $response->header('Content-Type', 'application/pdf');
-
-        return $pdf;
+        
+        return $response;
 
     }
 
@@ -85,12 +85,14 @@ class PagosController extends Controller
         $pagos->num_recibo_factura = $request->num_recibo_factura;
         $pagos->contrato = $request->contrato;
         $pagos->monto = $request->monto;
+        $name = $request->file('archivo')->hashName();
+
         $msj = "Los datos se guardado correctamente!";
         $path = $request->file('archivo')->storeAs(
             'public',
-            $request->file('archivo')->hashName()
+            $name
         );
-        $pagos->archivo = $path;
+        $pagos->archivo = $name;
 
         // return ('Archivo : <a href="'. PagosController::descargar($path) . '">Archivo_pdf</a>');
 

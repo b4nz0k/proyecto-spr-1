@@ -30,13 +30,14 @@ Route::get('/', function () {
 
 
 
-/* 
+
 Route::get('/principal', function () {
-    return view('pagina.principal');
-}); */
+    return view('principal');
+});
+
     //Rutas CRUD estaciones
 Route::controller(EstacionesController::class)-> group(function() {
-    Route::get('/principal', 'index')->name('Estaciones.index');
+    Route::get('/lista-estaciones', 'index')->name('Estaciones.index');
     Route::post('registro-estacion', 'store')->name('Estaciones.store'); // funcion POST registrar altas
     Route::get('alta-estacion', 'alta')->name('Estaciones.alta'); // Vista de formulario altas
     Route::get('editar-estacion/{id}', 'edit')->name('Estaciones.edit'); // Vista de formulario editar-pago

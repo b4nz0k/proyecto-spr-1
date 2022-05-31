@@ -261,7 +261,7 @@ return [
         ],*/
         [
             'text'        => 'Estaciones',
-            'url'         => 'principal',
+            'url'         => 'lista-estaciones',
             'icon'        => 'far fa-fw fa-file',
             // 'label'       => 4,
             // 'label_color' => 'success',
