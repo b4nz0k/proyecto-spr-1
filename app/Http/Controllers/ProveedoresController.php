@@ -29,6 +29,7 @@ class ProveedoresController extends Controller
         if ( $this->validate($request,[
             'nombre' => 'required|min:3|max:25|unique:cat_proveedores,nombre',
             'razon_social' => 'required|min:3|max:25|unique:cat_proveedores,razon_social',
+            'tipo' => 'required',
         ])) {
 
             $proveedore = new cat_proveedores();

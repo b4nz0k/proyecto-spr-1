@@ -132,6 +132,18 @@ class EstacionesController extends Controller
 
     public function store(Request $request)
     {
+        if ( $this->validate($request,[
+            'ciudad' => 'required',
+            'entidad' => 'required',
+            'grupo' => 'required',
+            // 'latitud' => 'required|integer',
+            // 'longitud' => 'required|integer',
+            'proveedor' => 'required',
+            'estatus' => 'required',
+            'comentarios' => 'required|min:10',
+            'referencia' => 'required|min:10',
+
+        ])) {
         $estaciones = new Estaciones();
         $estaciones->ciudad = $request->ciudad;
         $estaciones->entidad = $request->entidad;
@@ -147,6 +159,7 @@ class EstacionesController extends Controller
         
         if ($estaciones->save()) return redirect("/principal")->with('msj', "Los datos se guardado correctamente!");
         else return back();
+        }
     }
         // return redirect('lista-entidades');    }
 

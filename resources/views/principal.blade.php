@@ -41,6 +41,7 @@
                             <li>Catalogo de Pagos</li>
                             <li>Catalogo de Estaciones</li>
                             <li>Catalogo de Proveedores</li>
+                            <li>Catalogo de Contratos</li>
                             <li>Catalogo de Ciudades</li>
                             <li>Catalogo de Entidades</li>
                           </div>

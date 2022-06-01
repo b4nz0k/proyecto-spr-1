@@ -22,20 +22,33 @@
         <h1>Registrar Pago</h1>
         <div class="mb-3 col-md-4 col-auto">
             <label for="">Fecha de solicitud</label>
-            <input class="form-control" type="date" name="fecha_solicitud" min="2018-01-01" max="2024-06-1">
+            <input class="form-control @error('fecha_solicitud') border-2 border-danger @enderror" value="{{ old('fecha_solicitud') }}"
+             type="date" name="fecha_solicitud" min="2018-01-01" max="2024-06-1">
+                  @error('fecha_solicitud')
+                  <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                  @enderror
         </div>
         <div class="mb-3 col-md-4 col-auto">
             <label for="">Fecha de pago</label>
-            <input class="form-control" type="date" placeholder="Fecha de Pago" name="fecha_pago" min="2018-01-01" max="2024-06-1">
+            <input class="form-control @error('fecha_pago') border-2 border-danger @enderror" value="{{ old('fecha_pago') }}"
+             type="date" placeholder="Fecha de Pago" name="fecha_pago" min="2018-01-01" max="2024-06-1">
+                  @error('fecha_pago')
+                  <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                  @enderror
         </div>
         <div class="mb-3 col-md-4 col-auto">
             <label for="">Numero de recibo defactura</label>
-            <input class="form-control" type="text" placeholder="Numero de recibo defactura" name="num_recibo_factura"> 
+            <input class="form-control @error('num_recibo_factura') border-2 border-danger @enderror" value="{{ old('num_recibo_factura') }}"
+             type="text" placeholder="Numero de recibo defactura" name="num_recibo_factura"> 
+                  @error('num_recibo_factura')
+                  <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                  @enderror
         </div>
         <div class="mb-3 col-md-4 col-auto">
             <label for="">Periodo de Pago</label>
-            <select class="form-select" aria-label="Default select example" name="periodo_pago">
-                <option selected>Selecciona el periodo</option>
+            <select class="form-select @error('periodo_pago') border-2 border-danger @enderror"
+             aria-label="Default select example" name="periodo_pago">
+                <option value="" selected>Selecciona el periodo</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -49,12 +62,16 @@
                 <option value="11">11</option>
                 <option value="12">12</option>
             </select>
+                      @error('periodo_pago')
+                      <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                      @enderror
         </div>
         {{-- <input class="form-control" type="text" placeholder="Periodo de pago" name="periodo_pago">      --}}
         <div class="mb-3 col-md-4 col-auto">
             <label for="">Contrato</label>
-            <select class="form-select" aria-label="Default select example" name="contrato">
-                <option selected>Selecciona un Contrato</option>
+            <select class="form-select @error('contrato') border-2 border-danger @enderror"
+             aria-label="Default select example" name="contrato">
+                <option value="" selected>Selecciona un Contrato</option>
         
                 @foreach ($contratos as $contratos )
                 @php
@@ -63,16 +80,27 @@
                 <option value="{{($contratos->id) }}">{{($contratos->num_contrato)}} | {{($ciudad)}}</option>
                 @endforeach
             </select>
+                      @error('contrato')
+                      <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                      @enderror
             {{-- <input class="form-control" type="text" placeholder="Contrato" name="contrato"> --}}
         </div>
         <div class="mb-3 col-md-4 col-auto">
             <label for="">Monto</label>
-            <input class="form-control" type="text" placeholder="$" name="monto">
+            <input class="form-control @error('monto') border-2 border-danger @enderror" value="{{ old('monto') }}"
+             type="text" placeholder="$" name="monto">
+                      @error('monto')
+                      <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                      @enderror
         </div>
             {{ csrf_field() }}
             <div class="mb-3 col-md-4 col-auto">
-              <label class="form-label" for="customFile">Archivo de pago</label>
+              <label class="form-label @error('archivo') border-2 border-danger @enderror"
+               for="customFile">Archivo de pago</label>
               <input type="file" class="form-control" id="customFile" name="archivo" />
+                      @error('archivo')
+                      <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                      @enderror
             </div>
           <hr>
         {{-- Empiza el boton modal --}}

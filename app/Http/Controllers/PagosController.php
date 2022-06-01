@@ -54,30 +54,18 @@ class PagosController extends Controller
 
     public function store(Request $request)
     {   // Validacion que todos los campos esten seleccionados
-/*         $this->validate($request, [
-            'fecha_solicitud' => 'required',
-            'fecha_pago' => 'required',
+        if ( $this->validate($request,[
+            'fecha_solicitud' => 'required|date_format:Y-m-d',
+            'fecha_pago' => 'required|date_format:Y-m-d',
             'periodo_pago' => 'required',
             'num_recibo_factura' => 'required',
             'contrato' => 'required',
-            'monto' => 'required',
-            'archivo' => 'required',
-        ],
-        // Segundo array de validacion Mensajes personalizados
-        [
-            'fecha_solicitud' => 'Se requiere el campo de Fecha de Solicitud',
-            'fecha_pago' => 'Se requiere el campo de Fecha de Pago',
-            'periodo_pago' => 'Se requiere el campo de Periodo de Pago',
-            'num_recibo_factura' => 'Se requiere el campo Numero de Factura',
-            'contrato' => 'Se requiere el campo de Contrato',
-            'monto' => 'Se requiere el campo de Monto',
-            'archivo' => 'Se requiere archivo adjunto',
-        ]);
-        if ($v->fails())
-        {
-            return redirect()->back()->withInput()->withErrors($v->errors());
-        } */
-        // The validation passed
+            'monto' => 'required|integer',
+            'archivo' => 'required|file',
+
+
+        ])) {
+
         $pagos = new Pagos();
         $pagos->fecha_solicitud = $request->fecha_solicitud;
         $pagos->fecha_pago = $request->fecha_pago;
@@ -99,7 +87,7 @@ class PagosController extends Controller
 
         if ($pagos->save()) return redirect("/lista-pagos")->with('msj', $msj);
         else return back();
-
+    }
     }
 
     public function edit($id)

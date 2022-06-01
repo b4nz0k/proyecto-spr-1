@@ -47,11 +47,16 @@ class contratosController extends Controller
     public function alta()
     {        
         $estaciones = Estaciones::all();
+        $estaciones = contratosController::agregar_campo($estaciones, "cat_proveedores", "proveedor_id", "id", "id", 'proveedor');
+        $estaciones = contratosController::agregar_campo($estaciones, "cat_proveedores", "proveedor_nombre", "nombre", "id", 'proveedor');
+        $estaciones = contratosController::agregar_campo($estaciones, "cat_entidad", "entidad_nombre", "nombre", "id", 'entidad');
+        $estaciones = contratosController::agregar_campo($estaciones, "cat_ciudad", "ciudad_nombre", "nombre", "id", 'ciudad');
+
         $proveedores = cat_proveedores::all('id', 'nombre','tipo');
                 $ciudades_ordenado = array();        
                 foreach ($estaciones as $estacion) {
                     array_push($ciudades_ordenado, 
-                        ['nombre' => ($estacion->ciudades)->nombre],
+                        ['nombre' => ($estacion->proveedor_nombre)],
                         ['id' => $estacion->id]
                 ); }
         // return Arr::sort($ciudades_ordenado);
@@ -65,6 +70,15 @@ class contratosController extends Controller
 
     public function store(Request $request)
     {
+        if ( $this->validate($request,[
+            'proveedor' => 'required',
+            'fecha_inicio' => 'required|date_format:Y-m-d',
+            'num_contrato' => 'required',
+            'dia_corte_mensual' => 'required|integer|max:32',
+            'id_estacion' => 'required',
+            'importe_mensual' => 'required|integer',
+
+        ])) {
         $contratos = new Contratos();
 
         $contratos->proveedor = $request->proveedor;
@@ -77,6 +91,7 @@ class contratosController extends Controller
 
         if ($contratos->save()) return redirect("/lista-contratos")->with('msj', "Los datos se guardado correctamente!");
         else return back();
+        }
                 // return redirect('lista-contratos');
     }
 

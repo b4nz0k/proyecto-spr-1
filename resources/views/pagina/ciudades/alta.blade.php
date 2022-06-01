@@ -16,6 +16,7 @@
         <label for="">Ciudad</label>
         <input class="form-control mb-3 @error('nombre') border-2 border-danger @enderror" value="{{ old('nombre') }}"
         type="text" placeholder="Nombre de Ciudad" name="nombre">
+                {{-- Si es que hay un error, retorna un mensaje --}}
         @error('nombre')
           <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
         @enderror

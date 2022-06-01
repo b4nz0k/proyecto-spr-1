@@ -32,9 +32,9 @@
       </div>
       <div class="mb-3 col-md-5 col-auto">
           <label for="">Tipo</label>
-          <select class="form-select @error('tipo') border-2 border-danger @enderror" value="{{ old('tipo') }}"
+          <select class="form-select @error('tipo') border-2 border-danger @enderror"
            aria-label="Default select example" name="tipo">
-          <option selected>Selecciona Tipo</option>
+          <option value="" selected>Selecciona Tipo</option>
           <option value="Local">Local</option>
           <option value="Comercial">Comercial</option>
           <option value="Celular">Celular</option>

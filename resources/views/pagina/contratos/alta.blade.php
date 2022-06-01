@@ -14,35 +14,50 @@
       <h1>Registrar Contrato</h1>
           <div class="mb-3 col-md-6 col-auto">
           <label for="">Estacion</label>
-          <select class="form-select" aria-label="Default select example" name="id_estacion">
-            <option selected>Selecciona una Estacion</option>
-
+          <select class="form-select @error('id_estacion') border-2 border-danger @enderror" aria-label="Default select example" name="id_estacion">
+            <option value="" selected>Selecciona una Estacion</option>
             @foreach ($estaciones as $estacion )
             @php
-              $entidad = isset(($estacion->entidades)->nombre) ? (($estacion->entidades)->nombre) : "nulo";
-            @endphp
+/*               $entidad = isset(($estacion->ciudad_nombre) ? (($estacion->ciudad_nombre) : "nulo";
+ */            @endphp
 
-            <option value="{{$estacion->id}}">{{($estacion->ciudades)->nombre}} / {{ $entidad }}</option>
+            <option value="{{$estacion->id}}">{{$estacion->ciudad_nombre}} / {{ $estacion->entidad_nombre }}</option>
             @endforeach
           </select>
+                  @error('id_estacion')
+                    <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                  @enderror
         </div>
 
       <div class="mb-3 col-md-4 col-auto">
           <label for="">Fecha de inicio</label>
-          <input class="form-control" type="date" placeholder="Fecha de inicio" name="fecha_inicio" min="2018-01-01" max="2024-06-1">
+          <input class="form-control @error('fecha_inicio') border-2 border-danger @enderror" value="{{ old('fecha_inicio') }}"
+           type="date" placeholder="Fecha de inicio" name="fecha_inicio" min="2018-01-01" max="2024-06-1">
+                  @error('fecha_inicio')
+                  <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                  @enderror
       </div>
       <div class="mb-3 col-md-6 col-auto">
           <label for="">Contrato</label>
-          <input class="form-control" type="text" placeholder="Nombre del Contrato" name="num_contrato">
+          <input class="form-control @error('num_contrato') border-2 border-danger @enderror" value="{{ old('num_contrato') }}"
+           type="text" placeholder="Nombre del Contrato" name="num_contrato">
+                  @error('num_contrato')
+                  <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                  @enderror
       </div>
       <div class="mb-3 col-md-4 col-auto">
           <label for="">Dia de corte</label>
-          <input class="form-control" type="number" placeholder="Fecha de corte" name="dia_corte_mensual">
+          <input class="form-control @error('dia_corte_mensual') border-2 border-danger @enderror" value="{{ old('dia_corte_mensual') }}"
+           type="number" placeholder="Fecha de corte" name="dia_corte_mensual">
+                  @error('dia_corte_mensual')
+                  <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                  @enderror
       </div>
       <div class="mb-3 col-md-6 col-auto">
           <label for="">Proveedor</label>
-          <select class="form-select" aria-label="Default select example" name="proveedor">
-            <option selected>Proveedor</option>
+          <select class="form-select  @error('proveedor') border-2 border-danger @enderror"
+           aria-label="Default select example" name="proveedor">
+            <option value="" selected>Proveedor</option>
 
                 @foreach ($proveedores as $proveedor )
 
@@ -52,10 +67,17 @@
                 @endforeach
 
           </select>
+          @error('proveedor')
+          <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+          @enderror
       </div>
       <div class="mb-3 col-md-4 col-auto">
           <label for="">Importe Mensual</label>
-          <input class="form-control" type="number" placeholder="$" name="importe_mensual">
+          <input class="form-control @error('importe_mensual') border-2 border-danger @enderror" value="{{ old('importe_mensual') }}"
+           type="number" placeholder="$" name="importe_mensual">
+                  @error('importe_mensual')
+                  <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                  @enderror
       </div>
       <div class="col-6">
       <a href="{{route('Contratos.lista')}}" class="btn btn-primary col-6">Atras</a>
