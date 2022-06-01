@@ -15,7 +15,11 @@
       <h1>Registrar Estatus</h1>
       <div class="mb-3 col-md-4 col-auto">
           <label for="">Estatus</label>
-          <input class="form-control" type="text" placeholder="Nombre del Estatus" name="estatus">
+          <input class="form-control @error('estatus') border-2 border-danger @enderror" value="{{ old('estatus') }}"
+           type="text" placeholder="Nombre del Estatus" name="estatus">
+              @error('estatus')
+              <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+              @enderror
       </div><hr>
       <div class="col-4">
           <a href="{{route('Estatus.lista')}}" class="btn btn-primary mb-2 col-9"><--Atras</a>

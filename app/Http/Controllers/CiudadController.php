@@ -27,16 +27,16 @@ class CiudadController extends Controller
 
     public function store(request $request)
     {
-        if ($request->nombre) {
-
+        if ( $this->validate($request,[
+            'nombre' => 'required|min:3|max:25|unique:cat_ciudad,nombre',
+        ])) { 
+            $ciudad = new cat_ciudad();
+            $ciudad->nombre = $request->nombre;
+            if ($ciudad->save()) return redirect("/lista-ciudades")->with('msj', "Los datos se guardado correctamente!");
+            else return back();
         }
-        $ciudad = new cat_ciudad();
-        $ciudad->nombre = $request->nombre;
-        // return ($proveedores);
-        // $ciudad->save();
-        if ($ciudad->save()) return redirect("/lista-ciudades")->with('msj', "Los datos se guardado correctamente!");
-        else return back();
-        // return redirect('lista-ciudades');
+    
+
     }
 
     public function edit($id)
@@ -59,11 +59,8 @@ class CiudadController extends Controller
     public function destroy($id)
     {
         $ciudad = cat_ciudad::find($id);
-        // $ciudad->delete();
         if ($ciudad->delete()) return redirect("/lista-ciudades")->with('msj', "Los datos se eliminaron correctamente!");
         else return back();
-
-        // return redirect('lista-ciudades');   
     }
 
 }

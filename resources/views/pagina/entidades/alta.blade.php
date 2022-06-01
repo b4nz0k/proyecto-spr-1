@@ -14,23 +14,43 @@
       <h1>Registrar Entidad</h1>
       <div class="mb-3 col-md-4 col-auto">
           <label for="">Nombre</label>
-          <input class="form-control" type="text" placeholder="Nombre de Entidad" name="nombre">
+          <input class="form-control @error('nombre') border-2 border-danger @enderror" value="{{ old('nombre') }}"
+          type="text" placeholder="Nombre de Entidad" name="nombre">
+                  @error('nombre')
+                    <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                  @enderror
       </div>
       <div class="mb-3 col-md-4 col-auto">
           <label for="">Abreviacion</label>
-          <input class="form-control" type="text" placeholder="Abreviacion" name="abrev">
+          <input class="form-control @error('abrev') border-2 border-danger @enderror" value="{{ old('abrev') }}"
+           type="text" placeholder="Abreviacion" name="abrev">
+                  @error('abrev')
+                  <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                  @enderror
       </div>
       <div class="mb-3 col-md-4 col-auto">
           <label for="">Poblacion Total</label>
-          <input class="form-control" type="number" placeholder="No Poblacion Total" name="pob_tot">
+          <input class="form-control @error('pob_tot') border-2 border-danger @enderror" value="{{ old('pob_tot') }}"
+           type="number" placeholder="No Poblacion Total" name="pob_tot">
+                  @error('pob_tot')
+                  <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                  @enderror
       </div>
       <div class="mb-3 col-md-4 col-auto">
           <label for="">Poblacion Masc</label>
-          <input class="form-control" type="number" placeholder="No Poblacion Masculino" name="pob_masc">
+          <input class="form-control @error('pob_masc') border-2 border-danger @enderror" value="{{ old('pob_masc') }}"
+           type="number" placeholder="No Poblacion Masculino" name="pob_masc">
+                  @error('pob_masc')
+                  <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                  @enderror
       </div>
       <div class="mb-3 col-md-4 col-auto">
           <label for="">Poblacion Fem</label>
-          <input class="form-control" type="number" placeholder="No Poblacion Femenino" name="pob_fem">
+          <input class="form-control @error('pob_masc') border-2 border-danger @enderror" value="{{ old('pob_fem') }}"
+           type="number" placeholder="No Poblacion Femenino" name="pob_fem">
+                  @error('pob_fem')
+                  <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                  @enderror
       </div>
       <div class="col-6">
       <a href="{{route('Entidad.lista')}}" class="btn btn-primary mb-2 col-9"><--Atras</a>

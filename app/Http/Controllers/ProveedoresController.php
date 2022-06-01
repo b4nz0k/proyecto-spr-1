@@ -26,12 +26,20 @@ class ProveedoresController extends Controller
 
     public function store(request $request)
     {   //Guardar datos
-        $proveedore = new cat_proveedores();
-        $proveedore->nombre = $request->nombre;
-        $proveedore->razon_social = $request->razon_social;
-        $proveedore->tipo = $request->tipo;
-        if ($proveedore->save()) return redirect("/lista-proveedores")->with('msj', "Los datos se guardado correctamente!");
-        else return back();
+        if ( $this->validate($request,[
+            'nombre' => 'required|min:3|max:25|unique:cat_proveedores,nombre',
+            'razon_social' => 'required|min:3|max:25|unique:cat_proveedores,razon_social',
+        ])) {
+
+            $proveedore = new cat_proveedores();
+            $proveedore->nombre = $request->nombre;
+            $proveedore->razon_social = $request->razon_social;
+            $proveedore->tipo = $request->tipo;
+            if ($proveedore->save()) return redirect("/lista-proveedores")->with('msj', "Los datos se guardado correctamente!");
+            else return back();
+        }
+
+
     }
 
     public function edit($id)

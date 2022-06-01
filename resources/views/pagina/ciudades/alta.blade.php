@@ -14,8 +14,13 @@
       <h1>Registrar Ciudad</h1>
       <div class="mb-3 col-md-4 col-auto">
         <label for="">Ciudad</label>
-        <input class="form-control" type="text" placeholder="Nombre de Ciudad" name="nombre">
+        <input class="form-control mb-3 @error('nombre') border-2 border-danger @enderror" value="{{ old('nombre') }}"
+        type="text" placeholder="Nombre de Ciudad" name="nombre">
+        @error('nombre')
+          <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+        @enderror
       </div>
+
       <hr>
       <div class="col-3">
         <a href="{{route('Ciudad.lista')}}" class="btn btn-primary mb-2 col-9"><-- Atras</a>

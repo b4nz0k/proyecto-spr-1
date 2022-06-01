@@ -24,12 +24,15 @@ class EstatusController extends Controller
 
     public function store(request $request)
     { 
+        if ( $this->validate($request,[
+            'estatus' => 'required|min:3|max:25|unique:cat_estatus,estatus',
+        ])) {
         $estatus = new cat_estatus();
         $estatus->estatus = $request->estatus;
         // $estatus->save();
         if ($estatus->save()) return redirect("/lista-estatus")->with('msj', "Los datos se guardado correctamente!");
         else return back();
-
+        }
         // return redirect('lista-estatus');
     }
 

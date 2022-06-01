@@ -16,20 +16,32 @@
 
       <div class="mb-3 col-md-4 col-auto">
           <label for="">Proveedor</label>
-          <input class="form-control" type="text" placeholder="Nombre del Proveedor" name="nombre">
-      </div>
+          <input class="form-control @error('nombre') border-2 border-danger @enderror" value="{{ old('nombre') }}"
+           type="text" placeholder="Nombre del Proveedor" name="nombre">
+                @error('nombre')
+                <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                @enderror
+                </div>
       <div class="mb-3 col-md-6 col-auto">
           <label for="">Razon Social</label>
-          <input class="form-control" type="text" placeholder="Razon Social" name="razon_social">
+          <input class="form-control @error('razon_social') border-2 border-danger @enderror" value="{{ old('razon_social') }}"
+           type="text" placeholder="Razon Social" name="razon_social">
+                @error('razon_social')
+                <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                @enderror
       </div>
       <div class="mb-3 col-md-5 col-auto">
           <label for="">Tipo</label>
-          <select class="form-select" aria-label="Default select example" name="tipo">
+          <select class="form-select @error('tipo') border-2 border-danger @enderror" value="{{ old('tipo') }}"
+           aria-label="Default select example" name="tipo">
           <option selected>Selecciona Tipo</option>
           <option value="Local">Local</option>
           <option value="Comercial">Comercial</option>
           <option value="Celular">Celular</option>
           </select>
+                  @error('tipo')
+                  <p class="bg-red text-white text-sm p-2 text-center rounded-lg">{{$message}}</p>
+                  @enderror
       </div><hr>
       <div class="mb-3 col-md-4 col-auto">
       <a href="{{route('Proveedores.lista')}}" class="btn btn-primary mb-2 col-9"><-- Atras</a>

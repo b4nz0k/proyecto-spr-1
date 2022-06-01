@@ -27,19 +27,24 @@ class EntidadController extends Controller
 
     public function store(request $request)
     {
-        $entidad = new cat_entidad();
-        $entidad->nombre = $request->nombre;
-        $entidad->abrev = $request->abrev;
-        $entidad->pob_tot = $request->pob_tot;
-        $entidad->pob_masc = $request->pob_masc;
-        $entidad->pob_fem = $request->pob_fem;
+        if ( $this->validate($request,[
+            'nombre' => 'required|min:3|max:25|unique:cat_entidad,nombre',
+            'abrev' =>  'required|min:2|max:8|unique:cat_entidad,abrev',
+            'pob_tot' =>'required|min:2|integer|unique:cat_entidad,abrev',
+            'pob_masc' =>'required|min:100|integer|unique:cat_entidad,pob_masc',
+            'pob_fem' =>'required|min:100|integer|unique:cat_entidad,pob_fem',
+        ])) {
+            $entidad = new cat_entidad();
+            $entidad->nombre = $request->nombre;
+            $entidad->abrev = $request->abrev;
+            $entidad->pob_tot = $request->pob_tot;
+            $entidad->pob_masc = $request->pob_masc;
+            $entidad->pob_fem = $request->pob_fem;
+    
+            if ($entidad->save()) return redirect("/lista-entidad")->with('msj', "Los datos se guardado correctamente!");
+            else return back();
+        }
 
-        // return ($entidad);
-        // $entidad->save();
-        if ($entidad->save()) return redirect("/lista-entidad")->with('msj', "Los datos se guardado correctamente!");
-        else return back();
-
-        // return redirect('lista-entidades');
     }
 
     public function edit($id)
