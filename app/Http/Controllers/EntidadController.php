@@ -30,9 +30,9 @@ class EntidadController extends Controller
         if ( $this->validate($request,[
             'nombre' => 'required|min:3|max:25|unique:cat_entidad,nombre',
             'abrev' =>  'required|min:2|max:8|unique:cat_entidad,abrev',
-            'pob_tot' =>'required|min:2|integer|unique:cat_entidad,abrev',
-            'pob_masc' =>'required|min:100|integer|unique:cat_entidad,pob_masc',
-            'pob_fem' =>'required|min:100|integer|unique:cat_entidad,pob_fem',
+            // 'pob_tot' =>'required|min:2|integer|unique:cat_entidad,abrev',
+            // 'pob_masc' =>'required|min:100|integer|unique:cat_entidad,pob_masc',
+            // 'pob_fem' =>'required|min:100|integer|unique:cat_entidad,pob_fem',
         ])) {
             $entidad = new cat_entidad();
             $entidad->nombre = $request->nombre;
@@ -41,7 +41,7 @@ class EntidadController extends Controller
             $entidad->pob_masc = $request->pob_masc;
             $entidad->pob_fem = $request->pob_fem;
     
-            if ($entidad->save()) return redirect("/lista-entidad")->with('msj', "Los datos se guardado correctamente!");
+            if ($entidad->save()) return redirect("/lista-entidades")->with('msj', "Los datos se guardado correctamente!");
             else return back();
         }
 
@@ -63,7 +63,7 @@ class EntidadController extends Controller
         $entidades->pob_masc = $request->pob_masc;
         $entidades->pob_fem = $request->pob_fem;
         // $entidades->save();
-        if ($entidades->save()) return redirect("/lista-entidad")->with('msj', "Los datos se guardado correctamente!");
+        if ($entidades->save()) return redirect("/lista-entidades")->with('msj', "Los datos se guardado correctamente!");
         else return back();
 
         // return redirect('lista-entidades');
@@ -73,7 +73,7 @@ class EntidadController extends Controller
     {
         $entidad = cat_entidad::find($id);
         // $entidad->delete();
-        if ($entidad->delete()) return redirect("/lista-entidad")->with('msj', "Los datos se eliminaron correctamente!");
+        if ($entidad->delete()) return redirect("/lista-entidades")->with('msj', "Los datos se eliminaron correctamente!");
         else return back();
 
         // return redirect('lista-entidades');   

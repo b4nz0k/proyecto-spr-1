@@ -28,7 +28,7 @@ class ProveedoresController extends Controller
     {   //Guardar datos
         if ( $this->validate($request,[
             'nombre' => 'required|min:3|max:25|unique:cat_proveedores,nombre',
-            'razon_social' => 'required|min:3|max:25|unique:cat_proveedores,razon_social',
+            'razon_social' => 'required|min:3|unique:cat_proveedores,razon_social',
             'tipo' => 'required',
         ])) {
 
